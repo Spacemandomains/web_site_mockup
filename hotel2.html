@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooftop Republic CTG | Cartagena, Colombia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F0EDE6;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --border: #222;
+      --border-light: #D8D4CE;
+      --muted-dark: #666;
+      --muted-light: #999;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      padding: 0 40px;
+      background: rgba(10,10,10,.97);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav-brand {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      margin-right: auto;
+    }
+    .nav-brand-main {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .nav-brand-sub {
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+    }
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+      height: 60px;
+    }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-book {
+      margin-left: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+    .nav-book:hover { background: var(--cream); }
+
+    /* ── HERO ── */
+    #hero {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: calc(100vh - 60px);
+      min-height: 560px;
+    }
+
+    /* Left: cream panel */
+    .hero-left {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 56px 56px 56px 56px;
+      position: relative;
+    }
+    .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 28px;
+    }
+    .hero-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .hero-checkin-row {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(0,0,0,.15);
+      padding-top: 28px;
+    }
+    .hero-field {
+      flex: 1;
+      padding-right: 24px;
+      border-right: 1px solid rgba(0,0,0,.12);
+      margin-right: 24px;
+    }
+    .hero-field:last-of-type { border-right: none; margin-right: 0; padding-right: 0; }
+    .field-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .field-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .hero-avail-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 2px;
+      margin-top: 28px;
+      transition: opacity .15s;
+    }
+    .hero-avail-btn:hover { opacity: .65; }
+
+    /* Right: photo panel */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-right-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.25);
+    }
+    .hero-vertical-text {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin: center center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      white-space: nowrap;
+    }
+    .hero-time-widget {
+      position: absolute;
+      right: 40px;
+      bottom: 40px;
+      text-align: right;
+    }
+    .hero-time {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.85);
+    }
+    .hero-dots {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      margin: 8px 0;
+    }
+    .hero-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.5);
+    }
+    .hero-dot.active { background: var(--white); }
+    .hero-temp {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.7);
+    }
+
+    /* ── VIBE LOUNGE SECTION ── */
+    #vibe {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    #vibe img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+    }
+    .vibe-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: flex;
+      align-items: flex-end;
+      padding: 48px;
+    }
+    .vibe-left { flex: 1; }
+    .vibe-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .vibe-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 20px;
+    }
+    .vibe-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.5);
+      padding-bottom: 2px;
+    }
+    .vibe-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+    }
+    .play-btn {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .play-btn:hover { background: rgba(255,255,255,.15); }
+    .play-btn::after {
+      content: '▶';
+      font-size: .9rem;
+      color: var(--white);
+      margin-left: 3px;
+    }
+    .vibe-hours {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.6);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .vibe-hours::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: rgba(255,255,255,.4);
+    }
+
+    /* ── ROOMS HEADER ── */
+    .rooms-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .rooms-header-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .01em;
+      line-height: 1;
+    }
+    .view-all-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .view-all-link:hover { opacity: .65; }
+
+    /* ── ROOMS LIST ── */
+    #rooms { border-bottom: 1px solid var(--border); }
+    .room-row {
+      display: grid;
+      grid-template-columns: 320px 1fr 300px;
+      border-bottom: 1px solid var(--border);
+      min-height: 260px;
+    }
+    .room-row:last-child { border-bottom: none; }
+
+    /* left: number + info */
+    .room-info {
+      display: flex;
+      align-items: flex-start;
+      padding: 40px 48px;
+      gap: 28px;
+      border-right: 1px solid var(--border);
+    }
+    .room-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.12);
+      line-height: 1;
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+    .room-text {}
+    .room-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      margin-bottom: 6px;
+    }
+    .room-specs {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: 20px;
+    }
+    .room-price-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      padding-bottom: 2px;
+      transition: border-color .15s;
+    }
+    .room-price-link:hover { border-color: var(--white); }
+
+    /* center: photo */
+    .room-photo {
+      overflow: hidden;
+    }
+    .room-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s ease;
+    }
+    .room-row:hover .room-photo img { transform: scale(1.04); }
+
+    /* right: feature */
+    .room-feature {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 40px;
+      border-left: 1px solid var(--border);
+    }
+    .feature-icon {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,.5);
+    }
+    .feature-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: .82rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.6;
+    }
+
+    /* ── CTA BAR ── */
+    #cta-bar {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 48px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cta-text {}
+    .cta-bar-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .cta-bar-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .cta-email-form {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+      max-width: 380px;
+      border-bottom: 1px solid #999;
+    }
+    .cta-email-form input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem;
+      font-weight: 400;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #333;
+      padding: 8px 0;
+    }
+    .cta-email-form input::placeholder { color: #aaa; }
+    .cta-email-form button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--black);
+      padding: 4px 8px;
+      transition: transform .15s;
+    }
+    .cta-email-form button:hover { transform: translateX(3px); }
+    .cta-book-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border: 2px solid var(--black);
+      padding: 14px 28px;
+      white-space: nowrap;
+      transition: background .15s;
+    }
+    .cta-book-btn:hover { background: rgba(0,0,0,.08); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      padding: 56px 48px 28px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr auto;
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .footer-brand-main {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .footer-brand-sub {
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: 14px;
+    }
+    .footer-addr {
+      font-size: .78rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .footer-social { display: flex; gap: 10px; margin-top: 4px; }
+    .footer-social a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--muted-light);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-social a:hover { color: var(--white); }
+    .footer-col-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: .78rem;
+      color: #555;
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-badge {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .footer-badge span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #555;
+      line-height: 1.4;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy { font-size: .68rem; color: #333; text-transform: uppercase; letter-spacing: .08em; }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a {
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #444;
+      text-decoration: none;
+    }
+    .footer-legal a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .room-row { grid-template-columns: 260px 1fr 220px; }
+    }
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; height: auto; }
+      .hero-right { height: 50vw; min-height: 280px; }
+      .hero-left { padding: 40px 24px; }
+      .hero-headline { font-size: clamp(3rem, 12vw, 5rem); }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .vibe-overlay { padding: 28px; }
+      .rooms-header-bar { padding: 28px 24px; }
+      .room-row { grid-template-columns: 1fr; }
+      .room-info { border-right: none; padding: 28px 24px; }
+      .room-photo { height: 240px; }
+      .room-feature { border-left: none; border-top: 1px solid var(--border); padding: 24px; }
+      #cta-bar { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+      .cta-email-form { max-width: 100%; width: 100%; }
+      footer { padding: 40px 20px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <span class="nav-brand-main">Rooftop Republic</span>
+    <span class="nav-brand-sub">CTG · Cartagena</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#rooms">Stay</a></li>
+    <li><a href="#vibe">Experiences</a></li>
+    <li><a href="#vibe">Eat &amp; Drink</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-book">Book Now</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <!-- Left: cream panel -->
+  <div class="hero-left">
+    <h1 class="hero-headline">
+      Cartagena<br>Hits<br>Different.
+    </h1>
+    <p class="hero-sub">Good Stays. Good People.<br>Unforgettable Energy.</p>
+    <div class="hero-checkin-row">
+      <div class="hero-field">
+        <div class="field-label">Check-In</div>
+        <div class="field-val" id="cin">APR 22</div>
+      </div>
+      <div class="hero-field">
+        <div class="field-label">Check-Out</div>
+        <div class="field-val" id="cout">APR 25</div>
+      </div>
+      <div class="hero-field">
+        <div class="field-label">Guests</div>
+        <div class="field-val">2</div>
+      </div>
+    </div>
+    <a href="#rooms" class="hero-avail-btn">Check Availability &nbsp;→</a>
+  </div>
+
+  <!-- Right: photo panel -->
+  <div class="hero-right">
+    <img src="/assets/rooftopgtg.png" alt="Rooftop Republic CTG" />
+    <div class="hero-right-overlay"></div>
+    <div class="hero-vertical-text">Cartagena, Colombia</div>
+    <div class="hero-time-widget">
+      <div class="hero-time" id="hero-time">11:34 PM</div>
+      <div class="hero-dots">
+        <div class="hero-dot active"></div>
+        <div class="hero-dot"></div>
+        <div class="hero-dot"></div>
+      </div>
+      <div class="hero-temp">26°C</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VIBE LOUNGE ── -->
+<section id="vibe">
+  <img src="/assets/rooftopgtg.png" alt="Vibe Lounge at Rooftop Republic CTG" />
+  <div class="vibe-overlay">
+    <div class="vibe-left">
+      <h2 class="vibe-title">
+        Vibe<br>Lounge.<br>Cartagena.
+      </h2>
+      <p class="vibe-sub">Open-Air Terrace.<br>Tropical Cocktails.</p>
+      <a href="#contact" class="vibe-link">View the Menu</a>
+    </div>
+    <div class="vibe-right">
+      <div class="play-btn" aria-label="Watch video"></div>
+      <div class="vibe-hours">7AM–11PM</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROOMS HEADER ── -->
+<div class="rooms-header-bar">
+  <h2 class="rooms-header-title">
+    Spaces That Move With You.<br>Choose Your Stay.
+  </h2>
+  <a href="#contact" class="view-all-link">View All Rooms →</a>
+</div>
+
+<!-- ── ROOMS LIST ── -->
+<section id="rooms">
+
+  <!-- Row 01 -->
+  <div class="room-row">
+    <div class="room-info">
+      <div class="room-number">01</div>
+      <div class="room-text">
+        <div class="room-name">The Rooftop</div>
+        <div class="room-specs">8 Guests · Private Pool</div>
+        <a href="#contact" class="room-price-link">From $450 / Night &nbsp;→</a>
+      </div>
+    </div>
+    <div class="room-photo">
+      <img src="/assets/flagphoto.png" alt="The Rooftop" />
+    </div>
+    <div class="room-feature">
+      <div class="feature-icon">✦</div>
+      <div class="feature-name">Rooftop Pool &amp; Sunsets</div>
+      <p class="feature-desc">Views that stay with you. Private pool access from sunrise to sunset.</p>
+    </div>
+  </div>
+
+  <!-- Row 02 -->
+  <div class="room-row">
+    <div class="room-info">
+      <div class="room-number">02</div>
+      <div class="room-text">
+        <div class="room-name">The Penthouse</div>
+        <div class="room-specs">4 Guests · City View</div>
+        <a href="#contact" class="room-price-link">From $380 / Night &nbsp;→</a>
+      </div>
+    </div>
+    <div class="room-photo">
+      <img src="/assets/rooftopgtg.png" alt="The Penthouse" />
+    </div>
+    <div class="room-feature">
+      <div class="feature-icon">♪</div>
+      <div class="feature-name">Live Music &amp; DJ Sets</div>
+      <p class="feature-desc">From locals to legends. Nightly music from the rooftop terrace.</p>
+    </div>
+  </div>
+
+  <!-- Row 03 -->
+  <div class="room-row">
+    <div class="room-info">
+      <div class="room-number">03</div>
+      <div class="room-text">
+        <div class="room-name">CTG Apartment</div>
+        <div class="room-specs">4 Guests · City Living</div>
+        <a href="#contact" class="room-price-link">From $220 / Night &nbsp;→</a>
+      </div>
+    </div>
+    <div class="room-photo">
+      <img src="/assets/mainbedroom.png" alt="CTG Apartment" />
+    </div>
+    <div class="room-feature">
+      <div class="feature-icon">🍹</div>
+      <div class="feature-name">Local Bites &amp; Drinks</div>
+      <p class="feature-desc">Good food. Better people. Caribbean flavors and tropical cocktails on tap.</p>
+    </div>
+  </div>
+
+  <!-- Row 04 -->
+  <div class="room-row">
+    <div class="room-info">
+      <div class="room-number">04</div>
+      <div class="room-text">
+        <div class="room-name">The Suite</div>
+        <div class="room-specs">2 Guests · Boutique</div>
+        <a href="#contact" class="room-price-link">From $150 / Night &nbsp;→</a>
+      </div>
+    </div>
+    <div class="room-photo">
+      <img src="/assets/mainbedroom.png" alt="The Suite" style="object-position: right center;" />
+    </div>
+    <div class="room-feature">
+      <div class="feature-icon">⌘</div>
+      <div class="feature-name">City Tours &amp; Adventures</div>
+      <p class="feature-desc">Explore more. Feel more. Guided walks through Cartagena's hidden streets.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" style="padding:64px 48px; background:#111; border-top:1px solid var(--border);">
+  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+    <div>
+      <p style="font-family:'Barlow Condensed',sans-serif; font-size:.65rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#666; margin-bottom:12px;">Our Story</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; text-transform:uppercase; margin-bottom:20px; line-height:1;">About Rooftop Republic CTG</h2>
+      <p style="font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.8; margin-bottom:16px;">
+        Rooftop Republic CTG is a boutique hotel perched above the walled city of Cartagena de Indias, Colombia. Four distinct stays — from our iconic rooftop to our intimate suites — all under one address.
+      </p>
+      <p style="font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.8; margin-bottom:32px;">
+        We built this place for free spirits, night owls, and anyone who thinks Cartagena deserves more than a chain hotel. Come as you are. Stay as long as you like.
+      </p>
+      <a href="#rooms" style="font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--white); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:2px;">
+        Choose Your Stay →
+      </a>
+    </div>
+    <img src="/assets/flagphoto.png" alt="Rooftop Republic CTG" style="width:100%; height:380px; object-fit:cover; display:block;" />
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" style="padding:64px 48px; border-top:1px solid var(--border);">
+  <div style="max-width:680px;">
+    <p style="font-family:'Barlow Condensed',sans-serif; font-size:.65rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#666; margin-bottom:12px;">Get In Touch</p>
+    <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; text-transform:uppercase; margin-bottom:8px; line-height:1;">Book Direct &amp; Save</h2>
+    <p style="font-size:.88rem; color:rgba(255,255,255,.5); margin-bottom:36px;">Contact us for availability, group rates, or custom packages.</p>
+    <form onsubmit="return false;" style="display:flex; flex-direction:column; gap:16px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#666; margin-bottom:8px;">First Name</div>
+          <input type="text" placeholder="Ana" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #222; border-bottom:1px solid #444; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#666; margin-bottom:8px;">Last Name</div>
+          <input type="text" placeholder="García" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #222; border-bottom:1px solid #444; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#666; margin-bottom:8px;">Email</div>
+        <input type="email" placeholder="ana@example.com" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #222; border-bottom:1px solid #444; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#666; margin-bottom:8px;">Check-In</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #222; border-bottom:1px solid #444; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; color-scheme:dark;" />
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#666; margin-bottom:8px;">Check-Out</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #222; border-bottom:1px solid #444; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; color-scheme:dark;" />
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#666; margin-bottom:8px;">Message</div>
+        <textarea rows="4" placeholder="Special requests, group inquiries, events..." style="width:100%; background:rgba(255,255,255,.05); border:1px solid #222; border-bottom:1px solid #444; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; resize:vertical;"></textarea>
+      </div>
+      <div style="font-size:.75rem; color:#444; line-height:1.6;">
+        Cancellation policy: 25% partial refund within 14 days of your original purchase date. Refunds are processed through Stripe within 5–10 business days.
+      </div>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <button type="submit" style="font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#000; background:#fff; border:none; padding:14px 32px; cursor:pointer;">
+          Send Inquiry →
+        </button>
+        <a href="mailto:wilfred.leeux9@gmail.com" style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#555; text-decoration:none;">
+          wilfred.leeux9@gmail.com
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ── CTA BAR ── -->
+<div id="cta-bar">
+  <div class="cta-text">
+    <div class="cta-bar-title">Ready When You Are.</div>
+    <div class="cta-bar-sub">Book Direct. Best Rates. No Fees.</div>
+  </div>
+  <form class="cta-email-form" onsubmit="return false;">
+    <input type="email" placeholder="Your Email" />
+    <button type="submit">→</button>
+  </form>
+  <a href="#rooms" class="cta-book-btn">Book Now →</a>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-main">Rooftop Republic</div>
+      <div class="footer-brand-sub">CTG · Cartagena</div>
+      <p class="footer-addr">Bocagrande, Cartagena<br>de Indias, Colombia</p>
+      <div class="footer-social">
+        <a href="#">IG</a>
+        <a href="#">TT</a>
+        <a href="#">SP</a>
+        <a href="#">WA</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay</div>
+      <ul class="footer-links">
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#rooms">Suites</a></li>
+        <li><a href="#rooms">Long Stay</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Experiences</div>
+      <ul class="footer-links">
+        <li><a href="#vibe">Events</a></li>
+        <li><a href="#vibe">Wellness</a></li>
+        <li><a href="#vibe">Local Guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Eat &amp; Drink</div>
+      <ul class="footer-links">
+        <li><a href="#vibe">Vibe Lounge</a></li>
+        <li><a href="#vibe">Cocktails</a></li>
+        <li><a href="#vibe">Rooftop</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">About</div>
+      <ul class="footer-links">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#about">Sustainability</a></li>
+        <li><a href="#contact">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-badge">
+      <span>Made for Free Spirits</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Rooftop Republic CTG · Cartagena de Indias</span>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Live clock for Cartagena (UTC-5)
+  function updateTime() {
+    const now = new Date();
+    const ctg = new Date(now.toLocaleString('en-US', { timeZone: 'America/Bogota' }));
+    let h = ctg.getHours(), m = ctg.getMinutes();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    const timeEl = document.getElementById('hero-time');
+    if (timeEl) timeEl.textContent = `${h}:${String(m).padStart(2,'0')} ${ampm}`;
+  }
+  updateTime();
+  setInterval(updateTime, 30000);
+
+  // Default dates
+  const today = new Date();
+  const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+  const cin = new Date(today); cin.setDate(cin.getDate() + 7);
+  const cout = new Date(cin); cout.setDate(cout.getDate() + 3);
+  const cinEl = document.getElementById('cin');
+  const coutEl = document.getElementById('cout');
+  if (cinEl) cinEl.textContent = fmt(cin);
+  if (coutEl) coutEl.textContent = fmt(cout);
+</script>
+</body>
+</html>
