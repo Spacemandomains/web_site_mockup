@@ -6,244 +6,428 @@
   <title>Rooftop Republic CTG Mockups</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: #080808; color: #fff; }
 
-    :root {
-      --lime:  #C9FF00;
-      --cream: #EDE9E1;
-      --black: #080808;
-      --dark:  #111;
-      --border:#1C1C1C;
-      --muted: #555;
-      --white: #FFFFFF;
+    /* ── HOME INTRO ── */
+    .home-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 48px; border-bottom: 1px solid #1C1C1C;
     }
-
-    body {
-      font-family: 'Barlow', sans-serif;
-      background: var(--black);
-      color: var(--white);
-      min-height: 100vh;
-    }
-
-    /* ── HEADER ── */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 48px;
-      border-bottom: 1px solid var(--border);
-    }
-    .logo {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
+    .logo { display: flex; flex-direction: column; line-height: 1.15; }
     .logo-main {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 900;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 900;
+      letter-spacing: .07em; text-transform: uppercase; color: #fff;
     }
-    .logo-sub {
-      font-size: .58rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+    .logo-sub { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: #555; }
     .header-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase; color: #555; border: 1px solid #1C1C1C; padding: 6px 14px;
     }
-
-    /* ── HERO BAR ── */
     .hero-bar {
-      padding: 80px 48px 64px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 40px;
+      padding: 80px 48px 64px; border-bottom: 1px solid #1C1C1C;
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
     }
     .hero-bar-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -.01em;
-      line-height: .9;
+      font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3rem,6vw,5.5rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; line-height: .9;
     }
-    .hero-bar-title span { color: var(--lime); }
-    .hero-bar-desc {
-      max-width: 360px;
-      font-size: .88rem;
-      color: rgba(255,255,255,.5);
-      line-height: 1.7;
-      flex-shrink: 0;
-    }
-
-    /* ── MOCKUP GRID ── */
-    .mockup-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3px;
-      padding: 3px;
-    }
-
+    .hero-bar-title span { color: #C9FF00; }
+    .hero-bar-desc { max-width: 360px; font-size: .88rem; color: rgba(255,255,255,.5); line-height: 1.7; flex-shrink: 0; }
+    .mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px; }
     .mockup-card {
-      position: relative;
-      background: var(--dark);
-      overflow: hidden;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+      position: relative; background: #111; overflow: hidden; cursor: pointer;
+      text-decoration: none; color: inherit; display: block;
     }
-
-    /* Preview: stacked mini-screenshots of the mockup */
-    .mockup-preview {
-      position: relative;
-      height: 480px;
-      overflow: hidden;
-    }
-    .mockup-preview img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .65s ease;
-    }
+    .mockup-preview { position: relative; height: 480px; overflow: hidden; }
+    .mockup-preview img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .65s ease; }
     .mockup-card:hover .mockup-preview img { transform: scale(1.04); }
-
-    /* Overlay layer: shows the "screen" effect */
     .mockup-screen-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
     }
-
-    /* Version badge */
     .version-badge {
-      position: absolute;
-      top: 20px; left: 20px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      color: var(--black);
+      position: absolute; top: 20px; left: 20px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 800;
+      letter-spacing: .16em; text-transform: uppercase; padding: 5px 12px;
     }
-    .badge-v1 { background: var(--cream); color: var(--black); }
-    .badge-v2 { background: var(--lime); color: var(--black); }
-
-    /* Mockup info panel */
+    .badge-v1 { background: #EDE9E1; color: #080808; }
+    .badge-v2 { background: #C9FF00; color: #080808; }
     .mockup-info {
-      padding: 24px 28px 28px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
+      padding: 24px 28px 28px; border-top: 1px solid #1C1C1C;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
     }
     .mockup-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.45rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-      margin-bottom: 6px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.45rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px;
     }
     .mockup-style {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; color: #555;
     }
     .mockup-arrow {
-      flex-shrink: 0;
-      width: 44px; height: 44px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      color: var(--white);
-      transition: background .15s, border-color .15s;
-      margin-top: 4px;
+      flex-shrink: 0; width: 44px; height: 44px; border: 1px solid #1C1C1C; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff;
+      transition: background .15s, border-color .15s; margin-top: 4px;
     }
-    .mockup-card:hover .mockup-arrow {
-      background: var(--white);
-      border-color: var(--white);
-      color: var(--black);
-    }
-
-    /* Style tags row */
-    .style-tags {
-      display: flex;
-      gap: 6px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
+    .mockup-card:hover .mockup-arrow { background: #fff; border-color: #fff; color: #080808; }
+    .style-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
     .style-tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .58rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .58rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: #555; border: 1px solid #1C1C1C; padding: 3px 8px;
+    }
+    .home-footer {
+      padding: 36px 48px; border-top: 1px solid #1C1C1C;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .home-footer-copy { font-size: .7rem; color: #555; letter-spacing: .06em; }
+    .home-footer-note {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; color: #333;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 36px 48px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+    /* ── VERSION SEPARATOR ── */
+    .v-sep {
+      padding: 14px 48px; background: #0d0d0d;
+      border-top: 2px solid #1C1C1C; border-bottom: 1px solid #1C1C1C;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-copy {
-      font-size: .7rem;
-      color: var(--muted);
-      letter-spacing: .06em;
+    .v-sep-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .6rem; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase; color: #2a2a2a;
     }
-    .footer-note {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: #333;
+    .v-sep-back {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: #2a2a2a; text-decoration: none; transition: color .15s;
     }
+    .v-sep-back:hover { color: #fff; }
 
+    /* ══════════════════════════════════════
+       VERSION 1 — DARK / NEON
+    ══════════════════════════════════════ */
+    .mockup-v1 {
+      --lime: #C9FF00; --pink: #FF1F8E; --black: #0A0A0A; --card: #111111;
+      --border: #1E1E1E; --muted: #777777; --white: #FFFFFF;
+      background: #0A0A0A; color: #fff; font-family: 'Barlow', sans-serif;
+    }
+    .mockup-v1 nav {
+      position: sticky; top: 0; z-index: 100; height: 60px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 28px;
+      background: rgba(10,10,10,.97); border-bottom: 1px solid #1E1E1E;
+    }
+    .mockup-v1 .nav-brand { text-decoration: none; line-height: 1.15; }
+    .mockup-v1 .nav-brand-main {
+      display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800;
+      letter-spacing: .07em; text-transform: uppercase; color: #fff;
+    }
+    .mockup-v1 .nav-brand-sub { display: block; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: #777; }
+    .mockup-v1 .nav-center { display: flex; gap: 0; list-style: none; }
+    .mockup-v1 .nav-center a {
+      display: flex; align-items: center; height: 60px; padding: 0 20px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: rgba(255,255,255,.65); transition: color .15s;
+    }
+    .mockup-v1 .nav-center a:hover { color: #fff; }
+    .mockup-v1 .nav-center a.active { color: #C9FF00; }
+    .mockup-v1 .nav-right { display: flex; justify-content: flex-end; }
+    .mockup-v1 .nav-book {
+      display: flex; align-items: center; height: 60px; padding: 0 26px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase; color: #0A0A0A; background: #C9FF00; text-decoration: none; transition: opacity .15s;
+    }
+    .mockup-v1 .nav-book:hover { opacity: .85; }
+    .mockup-v1 #v1-hero { position: relative; height: 100vh; min-height: 620px; overflow: hidden; }
+    .mockup-v1 .hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
+    }
+    .mockup-v1 .hero-vignette {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(0,0,0,.72) 0%, rgba(0,0,0,.1) 55%, transparent 100%),
+        linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.1) 45%, transparent 100%),
+        linear-gradient(to bottom, rgba(0,0,0,.45) 0%, transparent 30%);
+    }
+    .mockup-v1 .hero-body {
+      position: relative; z-index: 2; height: calc(100% - 132px);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 48px;
+    }
+    .mockup-v1 .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif; font-size: clamp(4.5rem,10vw,8.5rem);
+      font-weight: 900; line-height: .9; letter-spacing: -.01em; text-transform: uppercase; margin-bottom: 18px;
+    }
+    .mockup-v1 .hero-headline .accent { color: #FF1F8E; font-style: italic; }
+    .mockup-v1 .hero-sub { font-size: .95rem; color: rgba(255,255,255,.78); max-width: 380px; line-height: 1.5; }
+    .mockup-v1 .search-bar {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; height: 80px;
+      display: flex; align-items: stretch; background: rgba(10,10,10,.92);
+      border-top: 1px solid rgba(255,255,255,.07); backdrop-filter: blur(6px);
+    }
+    .mockup-v1 .sf {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 32px;
+      border-right: 1px solid rgba(255,255,255,.08); cursor: pointer; transition: background .15s;
+    }
+    .mockup-v1 .sf:hover { background: rgba(255,255,255,.04); }
+    .mockup-v1 .sf-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .58rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase; color: #777; margin-bottom: 4px;
+    }
+    .mockup-v1 .sf-val {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #fff;
+    }
+    .mockup-v1 .search-update-btn {
+      display: flex; align-items: center; padding: 0 36px; background: #C9FF00; border: none;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase; color: #0A0A0A; cursor: pointer; white-space: nowrap; transition: opacity .15s;
+    }
+    .mockup-v1 .search-update-btn:hover { opacity: .85; }
+    .mockup-v1 .search-avail {
+      display: flex; align-items: center; padding: 0 28px; font-size: .8rem;
+      color: #777; white-space: nowrap; border-left: 1px solid rgba(255,255,255,.07);
+    }
+    .mockup-v1 #v1-rooms { padding: 72px 48px; }
+    .mockup-v1 .rooms-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 700;
+      letter-spacing: .25em; text-transform: uppercase; color: #C9FF00; margin-bottom: 10px;
+    }
+    .mockup-v1 .rooms-title {
+      font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem,4vw,3.2rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: .01em; margin-bottom: 48px;
+    }
+    .mockup-v1 .rooms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .mockup-v1 .room-card { background: #111111; overflow: hidden; display: flex; flex-direction: column; }
+    .mockup-v1 .room-card-photo { position: relative; height: 320px; overflow: hidden; flex-shrink: 0; }
+    .mockup-v1 .room-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .65s ease; }
+    .mockup-v1 .room-card:hover .room-card-photo img { transform: scale(1.06); }
+    .mockup-v1 .room-badge {
+      position: absolute; top: 14px; left: 14px; z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .62rem; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase; padding: 5px 11px; color: #0A0A0A;
+    }
+    .mockup-v1 .badge-lime { background: #C9FF00; }
+    .mockup-v1 .badge-cyan { background: #00D9FF; }
+    .mockup-v1 .badge-orange { background: #FF6A00; color: #fff; }
+    .mockup-v1 .room-card-body { flex: 1; display: flex; flex-direction: column; padding: 22px 24px 24px; border-top: 3px solid #1E1E1E; }
+    .mockup-v1 .room-card-row1 { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+    .mockup-v1 .room-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.65rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; }
+    .mockup-v1 .room-price-block { text-align: right; line-height: 1; }
+    .mockup-v1 .room-price-num { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 900; color: #C9FF00; }
+    .mockup-v1 .room-price-unit { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #777; margin-top: 2px; }
+    .mockup-v1 .room-desc { font-size: .85rem; color: rgba(255,255,255,.6); line-height: 1.55; margin-bottom: 14px; flex: 1; }
+    .mockup-v1 .room-specs { display: flex; flex-wrap: wrap; gap: 16px; font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #777; margin-bottom: 20px; }
+    .mockup-v1 .room-btns { display: grid; grid-template-columns: 1fr auto; gap: 4px; }
+    .mockup-v1 .btn-book {
+      display: flex; align-items: center; justify-content: center; padding: 15px 12px;
+      background: #C9FF00; color: #0A0A0A; font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: opacity .15s;
+    }
+    .mockup-v1 .btn-book:hover { opacity: .85; }
+    .mockup-v1 .btn-details {
+      display: flex; align-items: center; justify-content: center; padding: 15px 22px;
+      background: transparent; color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border: 1px solid #1E1E1E; cursor: pointer; transition: border-color .15s;
+    }
+    .mockup-v1 .btn-details:hover { border-color: rgba(255,255,255,.4); }
+    .mockup-v1 #v1-experiences { background: #0f0f0f; padding: 72px 48px; border-top: 1px solid #1E1E1E; }
+    .mockup-v1 .section-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: #C9FF00; margin-bottom: 10px; }
+    .mockup-v1 .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem,4vw,3.2rem); font-weight: 900; text-transform: uppercase; margin-bottom: 40px; }
+    .mockup-v1 .exp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; }
+    .mockup-v1 .exp-card { position: relative; overflow: hidden; cursor: pointer; }
+    .mockup-v1 .exp-card img { width: 100%; height: 280px; object-fit: cover; display: block; transition: transform .55s ease; }
+    .mockup-v1 .exp-card:hover img { transform: scale(1.06); }
+    .mockup-v1 .exp-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 55%); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; }
+    .mockup-v1 .exp-label { font-family: 'Barlow Condensed', sans-serif; font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #C9FF00; margin-bottom: 5px; }
+    .mockup-v1 .exp-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; }
+    .mockup-v1 #v1-eat-drink { padding: 72px 48px; border-top: 1px solid #1E1E1E; }
+    .mockup-v1 .ed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .mockup-v1 .ed-card { position: relative; overflow: hidden; }
+    .mockup-v1 .ed-card img { width: 100%; height: 400px; object-fit: cover; display: block; transition: transform .55s ease; }
+    .mockup-v1 .ed-card:hover img { transform: scale(1.05); }
+    .mockup-v1 .ed-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.05) 55%); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; }
+    .mockup-v1 .ed-tag { display: inline-block; background: #FF1F8E; color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: .6rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 12px; width: fit-content; }
+    .mockup-v1 .ed-name { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; margin-bottom: 8px; }
+    .mockup-v1 .ed-desc { font-size: .85rem; color: rgba(255,255,255,.7); max-width: 340px; line-height: 1.5; }
+    .mockup-v1 footer { background: #080808; border-top: 1px solid #1E1E1E; padding: 60px 48px 28px; }
+    .mockup-v1 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid #1E1E1E; }
+    .mockup-v1 .footer-brand-main { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: #fff; line-height: 1.1; }
+    .mockup-v1 .footer-brand-sub { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: #777; margin-bottom: 14px; }
+    .mockup-v1 .footer-addr { font-size: .8rem; color: #777; line-height: 1.7; margin-bottom: 16px; }
+    .mockup-v1 .footer-map { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color .15s; }
+    .mockup-v1 .footer-map:hover { color: #C9FF00; }
+    .mockup-v1 .footer-col-title { font-family: 'Barlow Condensed', sans-serif; font-size: .6rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: #fff; margin-bottom: 18px; }
+    .mockup-v1 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .mockup-v1 .footer-links a { font-size: .8rem; color: #777; text-decoration: none; transition: color .15s; }
+    .mockup-v1 .footer-links a:hover { color: #fff; }
+    .mockup-v1 .footer-social-row { display: flex; gap: 6px; margin-top: 2px; }
+    .mockup-v1 .social-chip { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #0A0A0A; background: #fff; padding: 6px 10px; text-decoration: none; transition: background .15s; }
+    .mockup-v1 .social-chip:hover { background: #C9FF00; }
+    .mockup-v1 .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .mockup-v1 .footer-copy { font-size: .7rem; color: #3a3a3a; }
+
+    /* ══════════════════════════════════════
+       VERSION 2 — EDITORIAL B&W
+    ══════════════════════════════════════ */
+    .mockup-v2 {
+      --cream: #EDEAE2; --black: #080808; --dark: #0F0F0F;
+      --border: #1A1A1A; --muted: #646464; --white: #FFFFFF;
+      background: #080808; color: #fff; font-family: 'Barlow', sans-serif;
+    }
+    .mockup-v2 nav {
+      position: sticky; top: 0; z-index: 100; height: 58px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 40px;
+      background: rgba(8,8,8,.98); border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .mockup-v2 .nav-brand { text-decoration: none; line-height: 1.15; }
+    .mockup-v2 .nav-brand-main { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: .98rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: #fff; }
+    .mockup-v2 .nav-brand-sub { display: block; font-size: .57rem; letter-spacing: .18em; text-transform: uppercase; color: #646464; }
+    .mockup-v2 .nav-links { display: flex; list-style: none; }
+    .mockup-v2 .nav-links a { display: flex; align-items: center; height: 58px; padding: 0 18px; font-family: 'Barlow Condensed', sans-serif; font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); text-decoration: none; transition: color .15s; }
+    .mockup-v2 .nav-links a:hover { color: #fff; }
+    .mockup-v2 .nav-right { display: flex; justify-content: flex-end; }
+    .mockup-v2 .nav-book { display: flex; align-items: center; height: 58px; padding: 0 26px; font-family: 'Barlow Condensed', sans-serif; font-size: .74rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #080808; background: #fff; text-decoration: none; transition: background .15s; }
+    .mockup-v2 .nav-book:hover { background: #EDEAE2; }
+    .mockup-v2 #v2-hero { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 58px); min-height: 580px; }
+    .mockup-v2 .hl { background: #EDEAE2; display: flex; flex-direction: column; padding: 0 56px; }
+    .mockup-v2 .hl-spacer { flex: 1; }
+    .mockup-v2 .hl-head { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(4.5rem,8.8vw,8.2rem); font-weight: 900; line-height: .87; letter-spacing: -.025em; text-transform: uppercase; color: #080808; margin-bottom: 32px; }
+    .mockup-v2 .hl-foot { border-top: 1px solid rgba(0,0,0,.13); padding: 28px 0 0; }
+    .mockup-v2 .hl-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #555; line-height: 1.55; margin-bottom: 28px; }
+    .mockup-v2 .hl-fields { display: flex; gap: 0; margin-bottom: 28px; }
+    .mockup-v2 .hf { flex: 1; padding-right: 22px; border-right: 1px solid rgba(0,0,0,.12); margin-right: 22px; }
+    .mockup-v2 .hf:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .mockup-v2 .hf-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: .57rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #999; margin-bottom: 5px; }
+    .mockup-v2 .hf-val { font-family: 'Barlow Condensed', sans-serif; font-size: 1.32rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; color: #080808; }
+    .mockup-v2 a.hl-avail { display: inline-flex; align-items: center; gap: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #080808; text-decoration: none; border-bottom: 2px solid #080808; padding-bottom: 2px; margin-bottom: 40px; transition: opacity .15s; }
+    .mockup-v2 a.hl-avail:hover { opacity: .6; }
+    .mockup-v2 .hr { position: relative; overflow: hidden; }
+    .mockup-v2 .hr img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .mockup-v2 .hr-dim { position: absolute; inset: 0; background: rgba(0,0,0,.26); }
+    .mockup-v2 .hr-vert { position: absolute; right: 16px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: 'Barlow Condensed', sans-serif; font-size: .57rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.45); white-space: nowrap; }
+    .mockup-v2 .hr-widget { position: absolute; right: 40px; bottom: 40px; text-align: right; }
+    .mockup-v2 .hw-t { font-family: 'Barlow Condensed', sans-serif; font-size: .95rem; font-weight: 700; letter-spacing: .06em; color: rgba(255,255,255,.75); }
+    .mockup-v2 .hw-dots { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; margin: 8px 0; }
+    .mockup-v2 .hw-d { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.3); }
+    .mockup-v2 .hw-d.on { background: #fff; }
+    .mockup-v2 .hw-temp { font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.5); }
+    .mockup-v2 #v2-vibe { position: relative; height: 440px; overflow: hidden; cursor: pointer; }
+    .mockup-v2 #v2-vibe img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; transition: transform .65s ease; }
+    .mockup-v2 #v2-vibe:hover img { transform: scale(1.03); }
+    .mockup-v2 .vibe-bg { position: absolute; inset: 0; background: rgba(0,0,0,.5); }
+    .mockup-v2 .vibe-inner { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: space-between; padding: 48px 56px; }
+    .mockup-v2 .vibe-head { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem,5.5vw,5rem); font-weight: 900; line-height: .9; letter-spacing: -.01em; text-transform: uppercase; margin-bottom: 14px; }
+    .mockup-v2 .vibe-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 20px; }
+    .mockup-v2 .vibe-link { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 2px; }
+    .mockup-v2 .vibe-link:hover { border-color: #fff; }
+    .mockup-v2 .vibe-rc { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+    .mockup-v2 .play-btn { width: 58px; height: 58px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.65); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .mockup-v2 .play-btn:hover { background: rgba(255,255,255,.1); }
+    .mockup-v2 .play-btn::after { content: '▶'; font-size: .82rem; color: #fff; margin-left: 3px; }
+    .mockup-v2 .vibe-hours { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); display: flex; align-items: center; gap: 10px; }
+    .mockup-v2 .vibe-hours::before { content: ''; display: block; width: 28px; height: 1px; background: rgba(255,255,255,.3); }
+    .mockup-v2 .rooms-bar { display: flex; align-items: center; justify-content: space-between; padding: 36px 56px; border-bottom: 1px solid #1A1A1A; }
+    .mockup-v2 .rooms-bar-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.5rem,2.8vw,2.5rem); font-weight: 900; text-transform: uppercase; letter-spacing: .01em; line-height: .95; }
+    .mockup-v2 .rooms-bar-link { font-family: 'Barlow Condensed', sans-serif; font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; text-decoration: none; white-space: nowrap; transition: opacity .15s; }
+    .mockup-v2 .rooms-bar-link:hover { opacity: .55; }
+    .mockup-v2 .rr { display: grid; grid-template-columns: 300px 1fr 280px; border-bottom: 1px solid #1A1A1A; min-height: 280px; }
+    .mockup-v2 .ra { display: flex; align-items: flex-start; gap: 22px; padding: 40px 44px 40px 56px; border-right: 1px solid #1A1A1A; }
+    .mockup-v2 .ra-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 900; color: rgba(255,255,255,.09); line-height: 1; flex-shrink: 0; padding-top: 2px; }
+    .mockup-v2 .ra-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px; }
+    .mockup-v2 .ra-spec { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #646464; margin-bottom: 20px; }
+    .mockup-v2 .ra-price { display: inline-flex; align-items: center; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px; transition: border-color .15s; }
+    .mockup-v2 .ra-price:hover { border-color: #fff; }
+    .mockup-v2 .rb { overflow: hidden; }
+    .mockup-v2 .rb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .65s ease; }
+    .mockup-v2 .rr:hover .rb img { transform: scale(1.04); }
+    .mockup-v2 .rc { display: flex; flex-direction: column; justify-content: center; padding: 36px 40px; border-left: 1px solid #1A1A1A; }
+    .mockup-v2 .rc-icon { font-size: 1.1rem; color: rgba(255,255,255,.3); margin-bottom: 14px; }
+    .mockup-v2 .rc-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.12rem; font-weight: 900; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 10px; line-height: 1.1; }
+    .mockup-v2 .rc-desc { font-size: .8rem; color: rgba(255,255,255,.42); line-height: 1.65; }
+    .mockup-v2 #v2-cta { background: #EDEAE2; display: flex; align-items: center; justify-content: space-between; padding: 36px 56px; gap: 40px; flex-wrap: wrap; border-top: 1px solid rgba(0,0,0,.08); }
+    .mockup-v2 .cta-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 900; text-transform: uppercase; letter-spacing: .01em; color: #080808; line-height: .92; margin-bottom: 6px; }
+    .mockup-v2 .cta-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #888; }
+    .mockup-v2 .cta-form { flex: 1; max-width: 360px; display: flex; align-items: center; border-bottom: 1px solid #aaa; padding-bottom: 6px; }
+    .mockup-v2 .cta-form input { flex: 1; background: transparent; border: none; outline: none; font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; letter-spacing: .08em; text-transform: uppercase; color: #333; padding: 4px 0; }
+    .mockup-v2 .cta-form input::placeholder { color: #bbb; }
+    .mockup-v2 .cta-form button { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #080808; transition: transform .15s; padding: 2px 6px; }
+    .mockup-v2 .cta-form button:hover { transform: translateX(3px); }
+    .mockup-v2 .cta-book { font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #080808; text-decoration: none; border: 2px solid #080808; padding: 13px 28px; white-space: nowrap; transition: background .15s; }
+    .mockup-v2 .cta-book:hover { background: rgba(0,0,0,.07); }
+    .mockup-v2 footer { background: #060606; border-top: 1px solid #1A1A1A; padding: 56px 56px 28px; }
+    .mockup-v2 .fg { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr auto; gap: 40px; align-items: start; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #1A1A1A; }
+    .mockup-v2 .fb-m { font-family: 'Barlow Condensed', sans-serif; font-size: .95rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; color: #fff; line-height: 1.1; }
+    .mockup-v2 .fb-s { font-size: .57rem; letter-spacing: .18em; text-transform: uppercase; color: #646464; margin-bottom: 12px; }
+    .mockup-v2 .fb-a { font-size: .78rem; color: #3e3e3e; line-height: 1.7; margin-bottom: 18px; }
+    .mockup-v2 .fb-soc { display: flex; gap: 14px; }
+    .mockup-v2 .fb-soc a { font-family: 'Barlow Condensed', sans-serif; font-size: .68rem; font-weight: 800; letter-spacing: .1em; color: #4a4a4a; text-decoration: none; transition: color .15s; }
+    .mockup-v2 .fb-soc a:hover { color: #fff; }
+    .mockup-v2 .fc-t { font-family: 'Barlow Condensed', sans-serif; font-size: .58rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
+    .mockup-v2 .fc-l { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .mockup-v2 .fc-l a { font-size: .78rem; color: #404040; text-decoration: none; transition: color .15s; }
+    .mockup-v2 .fc-l a:hover { color: #fff; }
+    .mockup-v2 .fb-badge { width: 84px; height: 84px; border-radius: 50%; border: 1px solid #242424; display: flex; align-items: center; justify-content: center; padding: 10px; flex-shrink: 0; align-self: center; }
+    .mockup-v2 .fb-badge span { font-family: 'Barlow Condensed', sans-serif; font-size: .57rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #3a3a3a; text-align: center; line-height: 1.4; }
+    .mockup-v2 .fbot { display: flex; align-items: center; justify-content: space-between; }
+    .mockup-v2 .fbot-c { font-family: 'Barlow Condensed', sans-serif; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: #282828; }
+    .mockup-v2 .fbot-l { display: flex; gap: 20px; }
+    .mockup-v2 .fbot-l a { font-family: 'Barlow Condensed', sans-serif; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: #323232; text-decoration: none; transition: color .15s; }
+    .mockup-v2 .fbot-l a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .mockup-v1 .hero-body { padding: 0 24px 48px; }
+      .mockup-v1 #v1-rooms, .mockup-v1 #v1-experiences, .mockup-v1 #v1-eat-drink { padding: 48px 20px; }
+      .mockup-v1 .rooms-grid, .mockup-v1 .ed-grid { grid-template-columns: 1fr; }
+      .mockup-v1 .exp-grid { grid-template-columns: 1fr 1fr; }
+      .mockup-v1 .room-card-photo { height: 260px; }
+      .mockup-v1 footer { padding: 48px 20px 24px; }
+      .mockup-v1 .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .mockup-v1 .search-bar { flex-wrap: wrap; height: auto; }
+      .mockup-v1 .sf { flex: none; width: 33.3%; border-bottom: 1px solid rgba(255,255,255,.08); }
+    }
+    @media (max-width: 1100px) {
+      .mockup-v2 .rr { grid-template-columns: 240px 1fr 220px; }
+      .mockup-v2 .ra { padding: 36px 32px 36px 36px; }
+    }
+    @media (max-width: 900px) {
+      .mockup-v2 #v2-hero { grid-template-columns: 1fr; height: auto; }
+      .mockup-v2 .hl { padding: 36px 28px 0; }
+      .mockup-v2 .hr { height: 52vw; min-height: 260px; }
+      .mockup-v2 nav { padding: 0 20px; }
+      .mockup-v2 .nav-links { display: none; }
+      .mockup-v2 .vibe-inner { padding: 28px; }
+      .mockup-v2 .rooms-bar { padding: 28px; }
+      .mockup-v2 .rr { grid-template-columns: 1fr; }
+      .mockup-v2 .ra { border-right: none; padding: 28px 24px; }
+      .mockup-v2 .rb { height: 260px; }
+      .mockup-v2 .rc { border-left: none; border-top: 1px solid #1A1A1A; padding: 24px; }
+      .mockup-v2 #v2-cta { padding: 28px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .mockup-v2 .cta-form { max-width: 100%; width: 100%; }
+      .mockup-v2 footer { padding: 40px 24px 24px; }
+      .mockup-v2 .fg { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .mockup-v2 .fb-badge { display: none; }
+    }
     @media (max-width: 800px) {
-      header { padding: 20px 24px; }
+      .home-header { padding: 20px 24px; }
       .hero-bar { padding: 48px 24px 40px; flex-direction: column; align-items: flex-start; }
       .mockup-grid { grid-template-columns: 1fr; }
       .mockup-preview { height: 320px; }
-      footer { padding: 24px; }
+      .home-footer { padding: 24px; }
+    }
+    @media (max-width: 600px) {
+      .mockup-v1 .exp-grid { grid-template-columns: 1fr; }
+      .mockup-v1 .sf { width: 50%; }
+      .mockup-v1 .footer-top { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
-<header>
+<!-- ══════════════════════════════════════
+     HOME INTRO
+══════════════════════════════════════ -->
+<header class="home-header">
   <div class="logo">
     <span class="logo-main">Rooftop Republic CTG</span>
     <span class="logo-sub">Website Mockups</span>
@@ -251,40 +435,27 @@
   <div class="header-tag">2 Designs Available</div>
 </header>
 
-<!-- ── HERO BAR ── -->
 <div class="hero-bar">
-  <h1 class="hero-bar-title">
-    Choose Your<br>
-    <span>Mockup.</span>
-  </h1>
-  <p class="hero-bar-desc">
-    Two fully built hotel website mockups for Rooftop Republic CTG. Each uses the same photos and branding in a completely different design direction. Preview both and pick your favorite.
-  </p>
+  <h1 class="hero-bar-title">Choose Your<br><span>Mockup.</span></h1>
+  <p class="hero-bar-desc">Two fully built hotel website mockups for Rooftop Republic CTG. Each uses the same photos and branding in a completely different design direction. Scroll into each one below.</p>
 </div>
 
-<!-- ── MOCKUP CARDS ── -->
 <div class="mockup-grid">
 
-  <!-- ── VERSION 1: Dark / Neon ── -->
-  <a href="/hotel" class="mockup-card">
+  <!-- Version 1 card -->
+  <a href="#v1" class="mockup-card">
     <div class="mockup-preview">
       <img src="/assets/mainbedroom.png" alt="Version 1" />
       <div class="mockup-screen-overlay"></div>
-      <!-- Nav bar -->
       <div style="position:absolute;top:0;left:0;right:0;height:44px;background:rgba(8,8,8,.97);display:flex;align-items:center;padding:0 18px;gap:12px;z-index:10;">
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-right:auto;">Rooftop Republic</span>
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C9FF00;">Stay</span>
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444;">Experiences</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444;">Eat &amp; Drink</span>
         <span style="background:#C9FF00;color:#000;font-family:'Barlow Condensed',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;margin-left:4px;">Book Now</span>
       </div>
-      <!-- Headline -->
       <div style="position:absolute;bottom:86px;left:24px;z-index:10;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3.8vw,3.2rem);font-weight:900;line-height:.88;text-transform:uppercase;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.9);">
-          Spaces<br>That Move<br><span style="color:#FF1F8E;font-style:italic;">With You.</span>
-        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3.8vw,3.2rem);font-weight:900;line-height:.88;text-transform:uppercase;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.9);">Spaces<br>That Move<br><span style="color:#FF1F8E;font-style:italic;">With You.</span></div>
       </div>
-      <!-- Dark search bar -->
       <div style="position:absolute;bottom:0;left:0;right:0;height:82px;background:rgba(8,8,8,.97);display:flex;align-items:center;z-index:10;border-top:1px solid rgba(255,255,255,.06);">
         <div style="flex:1;padding:0 14px 0 18px;border-right:1px solid rgba(255,255,255,.07);">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.46rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#444;margin-bottom:3px;">Check-In</div>
@@ -293,10 +464,6 @@
         <div style="flex:1;padding:0 14px;border-right:1px solid rgba(255,255,255,.07);">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.46rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#444;margin-bottom:3px;">Check-Out</div>
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.92rem;font-weight:900;color:#fff;text-transform:uppercase;">APR 25</div>
-        </div>
-        <div style="flex:1;padding:0 14px;border-right:1px solid rgba(255,255,255,.07);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.46rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#444;margin-bottom:3px;">Guests</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.92rem;font-weight:900;color:#fff;text-transform:uppercase;">2 Guests</div>
         </div>
         <div style="background:#C9FF00;color:#000;font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:0 18px;height:82px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">Update Search</div>
       </div>
@@ -312,60 +479,30 @@
           <span class="style-tag">Room Cards</span>
         </div>
       </div>
-      <div class="mockup-arrow">→</div>
+      <div class="mockup-arrow">↓</div>
     </div>
     <div class="version-badge badge-v1">Version 1</div>
   </a>
 
-  <!-- ── VERSION 2: Editorial Split Screen ── -->
-  <a href="/hotel2" class="mockup-card">
-    <div class="mockup-preview" style="background:var(--cream);">
-      <!-- This card is a TRUE split: left=cream panel, right=photo -->
-      <!-- Nav bar (dark, full width) -->
+  <!-- Version 2 card -->
+  <a href="#v2" class="mockup-card">
+    <div class="mockup-preview" style="background:#EDEAE2;">
       <div style="position:absolute;top:0;left:0;right:0;height:44px;background:rgba(8,8,8,.97);display:flex;align-items:center;padding:0 18px;gap:12px;z-index:10;">
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-right:auto;">Rooftop Republic</span>
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);">Stay</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);">Experiences</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);">Eat &amp; Drink</span>
         <span style="background:#fff;color:#000;font-family:'Barlow Condensed',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;margin-left:4px;">Book Now</span>
       </div>
-      <!-- Left cream panel (55% width) -->
       <div style="position:absolute;top:44px;left:0;width:55%;bottom:0;background:#EDEAE2;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 22px 22px;z-index:5;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4.2vw,3.8rem);font-weight:900;line-height:.86;letter-spacing:-.025em;text-transform:uppercase;color:#080808;margin-bottom:16px;">
-          Cartagena<br>Hits<br>Different.
-        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4.2vw,3.8rem);font-weight:900;line-height:.86;letter-spacing:-.025em;text-transform:uppercase;color:#080808;margin-bottom:16px;">Cartagena<br>Hits<br>Different.</div>
         <div style="border-top:1px solid rgba(0,0,0,.13);padding-top:12px;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.46rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#777;margin-bottom:8px;">Good Stays. Good People. Unforgettable Energy.</div>
-          <div style="display:flex;gap:14px;margin-bottom:10px;">
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:.44rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#999;margin-bottom:2px;">Check-In</div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:.86rem;font-weight:900;color:#111;text-transform:uppercase;">APR 22</div>
-            </div>
-            <div style="width:1px;background:rgba(0,0,0,.1);"></div>
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:.44rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#999;margin-bottom:2px;">Check-Out</div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:.86rem;font-weight:900;color:#111;text-transform:uppercase;">APR 25</div>
-            </div>
-            <div style="width:1px;background:rgba(0,0,0,.1);"></div>
-            <div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:.44rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#999;margin-bottom:2px;">Guests</div>
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:.86rem;font-weight:900;color:#111;text-transform:uppercase;">2</div>
-            </div>
-          </div>
           <span style="font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#111;border-bottom:1.5px solid #111;padding-bottom:1px;">Check Availability →</span>
         </div>
       </div>
-      <!-- Right photo panel (45% width) -->
       <div style="position:absolute;top:44px;right:0;width:45%;bottom:0;overflow:hidden;z-index:5;">
         <img src="/assets/rooftopgtg.png" alt="Rooftop Republic CTG" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
         <div style="position:absolute;inset:0;background:rgba(0,0,0,.22);"></div>
-        <!-- Vertical text -->
         <div style="position:absolute;right:10px;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Barlow Condensed',sans-serif;font-size:.44rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap;">Cartagena, Colombia</div>
-        <!-- Time widget -->
-        <div style="position:absolute;right:18px;bottom:16px;text-align:right;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7);">11:34 PM</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.6rem;color:rgba(255,255,255,.45);margin-top:4px;">26°C</div>
-        </div>
       </div>
     </div>
     <div class="mockup-info">
@@ -379,113 +516,461 @@
           <span class="style-tag">Split Hero</span>
         </div>
       </div>
-      <div class="mockup-arrow">→</div>
+      <div class="mockup-arrow">↓</div>
     </div>
     <div class="version-badge badge-v2">Version 2</div>
   </a>
 
 </div>
 
-  <!-- ── VERSION 1: Dark / Neon ── -->
-  <a href="/hotel" class="mockup-card">
-    <div class="mockup-preview">
-      <img src="/assets/mainbedroom.png" alt="Version 1 — Dark Neon" />
-      <div class="mockup-screen-overlay"></div>
-      <!-- Nav -->
-      <div style="position:absolute; top:0; left:0; right:0; height:48px; background:rgba(8,8,8,.95); display:flex; align-items:center; padding:0 20px; gap:14px; border-bottom:1px solid rgba(255,255,255,.07);">
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.72rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; margin-right:auto;">Rooftop Republic</div>
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lime);">Stay</div>
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#444;">Experiences</div>
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#444;">Eat &amp; Drink</div>
-        <div style="background:var(--lime); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:.56rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:5px 11px; margin-left:6px;">Book Now</div>
-      </div>
-      <!-- Hero headline -->
-      <div style="position:absolute; bottom:84px; left:28px;">
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4.5vw,3.5rem); font-weight:900; line-height:.88; letter-spacing:-.01em; text-transform:uppercase; color:#fff; text-shadow:0 2px 24px rgba(0,0,0,.8);">
-          Spaces<br>That Move<br><span style="color:#FF1F8E; font-style:italic;">With You.</span>
-        </div>
-      </div>
-      <!-- Search bar -->
-      <div style="position:absolute; bottom:0; left:0; right:0; height:80px; background:rgba(8,8,8,.96); display:flex; align-items:center; padding:0 0 0 0; border-top:1px solid rgba(255,255,255,.06);">
-        <div style="flex:1; padding:0 16px 0 20px; border-right:1px solid rgba(255,255,255,.07);">
-          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.48rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#444; margin-bottom:3px;">Check-In</div>
-          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.95rem; font-weight:900; color:#fff; letter-spacing:.04em; text-transform:uppercase;">APR 22</div>
-        </div>
-        <div style="flex:1; padding:0 16px; border-right:1px solid rgba(255,255,255,.07);">
-          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.48rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#444; margin-bottom:3px;">Check-Out</div>
-          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.95rem; font-weight:900; color:#fff; letter-spacing:.04em; text-transform:uppercase;">APR 25</div>
-        </div>
-        <div style="flex:1; padding:0 16px; border-right:1px solid rgba(255,255,255,.07);">
-          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.48rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#444; margin-bottom:3px;">Guests</div>
-          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.95rem; font-weight:900; color:#fff; letter-spacing:.04em; text-transform:uppercase;">2 Guests</div>
-        </div>
-        <div style="background:var(--lime); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:.66rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:0 20px; height:80px; display:flex; align-items:center; white-space:nowrap; flex-shrink:0;">Update Search</div>
-      </div>
-    </div>
-    <div class="mockup-info">
-      <div>
-        <div class="mockup-name">Version 1</div>
-        <div class="mockup-style">Dark · Neon Green · Card Grid</div>
-        <div class="style-tags">
-          <span class="style-tag">Bold</span>
-          <span class="style-tag">High Energy</span>
-          <span class="style-tag">Room Cards</span>
-          <span class="style-tag">Lime Green</span>
-        </div>
-      </div>
-      <div class="mockup-arrow">→</div>
-    </div>
-    <div class="version-badge badge-v1">Version 1</div>
-  </a>
-
-  <!-- ── VERSION 2: Editorial B&W ── -->
-  <a href="/hotel2" class="mockup-card">
-    <div class="mockup-preview">
-      <img src="/assets/rooftopgtg.png" alt="Version 2 — Editorial" />
-      <div class="mockup-screen-overlay"></div>
-      <!-- Nav -->
-      <div style="position:absolute; top:0; left:0; right:0; height:48px; background:rgba(8,8,8,.95); display:flex; align-items:center; padding:0 20px; gap:14px; border-bottom:1px solid rgba(255,255,255,.07);">
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.72rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; margin-right:auto;">Rooftop Republic</div>
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#444;">Stay</div>
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#444;">Experiences</div>
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#444;">Eat &amp; Drink</div>
-        <div style="background:#fff; color:#000; font-family:'Barlow Condensed',sans-serif; font-size:.56rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:5px 11px; margin-left:6px;">Book Now</div>
-      </div>
-      <!-- Hero text: cream left panel overlay -->
-      <div style="position:absolute; bottom:0; left:0; width:52%; height:calc(100% - 48px); background:rgba(237,233,226,.96); display:flex; flex-direction:column; justify-content:flex-end; padding:20px 24px;">
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.8rem,4vw,3.2rem); font-weight:900; line-height:.87; letter-spacing:-.02em; text-transform:uppercase; color:#080808; margin-bottom:14px;">Cartagena<br>Hits<br>Different.</div>
-        <div style="border-top:1px solid rgba(0,0,0,.12); padding-top:12px;">
-          <div style="display:flex; gap:14px; margin-bottom:10px;">
-            <div><div style="font-family:'Barlow Condensed',sans-serif; font-size:.48rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#888; margin-bottom:3px;">Check-In</div><div style="font-family:'Barlow Condensed',sans-serif; font-size:.88rem; font-weight:900; color:#111; text-transform:uppercase;">APR 22</div></div>
-            <div><div style="font-family:'Barlow Condensed',sans-serif; font-size:.48rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#888; margin-bottom:3px;">Check-Out</div><div style="font-family:'Barlow Condensed',sans-serif; font-size:.88rem; font-weight:900; color:#111; text-transform:uppercase;">APR 25</div></div>
-          </div>
-          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.64rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#111; border-bottom:1.5px solid #111; display:inline;">Check Availability →</div>
-        </div>
-      </div>
-    </div>
-    <div class="mockup-info">
-      <div>
-        <div class="mockup-name">Version 2</div>
-        <div class="mockup-style">Editorial · Black &amp; White · Split Screen</div>
-        <div class="style-tags">
-          <span class="style-tag">Minimal</span>
-          <span class="style-tag">Editorial</span>
-          <span class="style-tag">Numbered Rooms</span>
-          <span class="style-tag">Split Hero</span>
-        </div>
-      </div>
-      <div class="mockup-arrow">→</div>
-    </div>
-    <div class="version-badge badge-v2">Version 2</div>
-  </a>
-
+<div class="home-footer">
+  <span class="home-footer-copy">© 2025 Rooftop Republic CTG · Cartagena de Indias, Colombia</span>
+  <span class="home-footer-note">Mockup Preview — Not for Distribution</span>
 </div>
 
-<!-- ── FOOTER ── */
+<!-- ══════════════════════════════════════
+     VERSION 1 — DARK / NEON
+══════════════════════════════════════ -->
+<div class="v-sep" id="v1">
+  <span class="v-sep-label">Version 1 · Dark / Neon</span>
+  <a href="#" class="v-sep-back">↑ Back to Top</a>
+</div>
+
+<div class="mockup-v1">
+
+<nav>
+  <a href="#v1" class="nav-brand">
+    <span class="nav-brand-main">Rooftop Republic</span>
+    <span class="nav-brand-sub">Hotel Cartagena</span>
+  </a>
+  <ul class="nav-center">
+    <li><a href="#v1-rooms" class="active">Stay</a></li>
+    <li><a href="#v1-experiences">Experiences</a></li>
+    <li><a href="#v1-eat-drink">Eat &amp; Drink</a></li>
+    <li><a href="#v1-about">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#v1-contact" class="nav-book">Book Now</a>
+  </div>
+</nav>
+
+<section id="v1-hero">
+  <img src="/assets/rooftopgtg.png" alt="Rooftop Republic CTG" class="hero-bg" />
+  <div class="hero-vignette"></div>
+  <div class="hero-body">
+    <h1 class="hero-headline">Spaces<br>That Move<br><span class="accent">With You.</span></h1>
+    <p class="hero-sub">Four distinct stays. One unforgettable address. Book direct for the best rate.</p>
+  </div>
+  <div class="search-bar">
+    <div class="sf"><div class="sf-label">Check-In</div><div class="sf-val" id="v1-cin">APR 22</div></div>
+    <div class="sf"><div class="sf-label">Check-Out</div><div class="sf-val" id="v1-cout">APR 25</div></div>
+    <div class="sf"><div class="sf-label">Guests</div><div class="sf-val">2 Guests</div></div>
+    <button class="search-update-btn">Update Search</button>
+    <div class="search-avail">4 rooms available</div>
+  </div>
+</section>
+
+<section id="v1-rooms">
+  <div class="rooms-eyebrow">Accommodations</div>
+  <div class="rooms-title">Choose Your Stay</div>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <div class="room-card-photo">
+        <img src="/assets/rooftopgtg.png" alt="The Rooftop" />
+        <div class="room-badge badge-lime">Most Popular</div>
+      </div>
+      <div class="room-card-body">
+        <div class="room-card-row1">
+          <div class="room-name">The Rooftop</div>
+          <div class="room-price-block"><span class="room-price-num">$450</span><span class="room-price-unit">/Night</span></div>
+        </div>
+        <p class="room-desc">Our ultimate luxury experience with private rooftop pool, soaring views of Cartagena, and a full team at your service.</p>
+        <div class="room-specs"><span>👥 8 Guests</span><span>🛁 4 Baths</span><span>📐 4200 Sqft</span></div>
+        <div class="room-btns">
+          <a href="#v1-contact" class="btn-book">Book This Room →</a>
+          <a href="#v1-contact" class="btn-details">Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-card-photo">
+        <img src="/assets/flagphoto.png" alt="The Penthouse" />
+        <div class="room-badge badge-cyan">Best Views</div>
+      </div>
+      <div class="room-card-body">
+        <div class="room-card-row1">
+          <div class="room-name">The Penthouse</div>
+          <div class="room-price-block"><span class="room-price-num">$380</span><span class="room-price-unit">/Night</span></div>
+        </div>
+        <p class="room-desc">Rooftop terrace with panoramic city views and unparalleled modern luxury above the walled city.</p>
+        <div class="room-specs"><span>👥 4 Guests</span><span>🛁 2 Baths</span><span>📐 2100 Sqft</span></div>
+        <div class="room-btns">
+          <a href="#v1-contact" class="btn-book">Book This Room →</a>
+          <a href="#v1-contact" class="btn-details">Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-card-photo">
+        <img src="/assets/mainbedroom.png" alt="CTG Apartment" />
+        <div class="room-badge badge-orange">Great Value</div>
+      </div>
+      <div class="room-card-body">
+        <div class="room-card-row1">
+          <div class="room-name">CTG Apartment</div>
+          <div class="room-price-block"><span class="room-price-num">$220</span><span class="room-price-unit">/Night</span></div>
+        </div>
+        <p class="room-desc">Spacious, stylish living areas designed for extended stays in Cartagena.</p>
+        <div class="room-specs"><span>👥 4 Guests</span><span>🛁 2 Baths</span><span>📐 1400 Sqft</span></div>
+        <div class="room-btns">
+          <a href="#v1-contact" class="btn-book">Book This Room →</a>
+          <a href="#v1-contact" class="btn-details">Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-card-photo">
+        <img src="/assets/mainbedroom.png" alt="The Suite" style="object-position:right 30%;" />
+      </div>
+      <div class="room-card-body">
+        <div class="room-card-row1">
+          <div class="room-name">The Suite</div>
+          <div class="room-price-block"><span class="room-price-num">$150</span><span class="room-price-unit">/Night</span></div>
+        </div>
+        <p class="room-desc">Boutique comfort with premium bedding, tropical charm, and every amenity.</p>
+        <div class="room-specs"><span>👥 2 Guests</span><span>🛁 1 Bath</span><span>📐 450 Sqft</span></div>
+        <div class="room-btns">
+          <a href="#v1-contact" class="btn-book">Book This Room →</a>
+          <a href="#v1-contact" class="btn-details">Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="v1-experiences">
+  <div class="section-eyebrow">What To Do</div>
+  <div class="section-title">Experiences</div>
+  <div class="exp-grid">
+    <div class="exp-card"><img src="/assets/rooftopgtg.png" alt="Rooftop Events" /><div class="exp-overlay"><div class="exp-label">Signature</div><div class="exp-name">Rooftop Events</div></div></div>
+    <div class="exp-card"><img src="/assets/mainbedroom.png" alt="Wellness" /><div class="exp-overlay"><div class="exp-label">Relax</div><div class="exp-name">Wellness</div></div></div>
+    <div class="exp-card"><img src="/assets/flagphoto.png" alt="Local Guide" /><div class="exp-overlay"><div class="exp-label">Explore</div><div class="exp-name">Local Guide</div></div></div>
+  </div>
+</section>
+
+<section id="v1-eat-drink">
+  <div class="section-eyebrow">On Property</div>
+  <div class="section-title">Eat &amp; Drink</div>
+  <div class="ed-grid">
+    <div class="ed-card"><img src="/assets/rooftopgtg.png" alt="Vibe Lounge" /><div class="ed-overlay"><div class="ed-tag">Rooftop Bar</div><div class="ed-name">Vibe Lounge</div><p class="ed-desc">Signature cocktails and sunset views above the walled city. Open nightly 7AM–11PM.</p></div></div>
+    <div class="ed-card"><img src="/assets/flagphoto.png" alt="The Republic" /><div class="ed-overlay"><div class="ed-tag">Restaurant</div><div class="ed-name">The Republic</div><p class="ed-desc">Colombian coastal cuisine with a modern twist. Breakfast, lunch &amp; dinner daily.</p></div></div>
+  </div>
+</section>
+
+<section id="v1-about" style="padding:72px 48px; background:#0f0f0f; border-top:1px solid #1E1E1E;">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; max-width:1200px; margin:0 auto;">
+    <div>
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title" style="margin-bottom:20px;">About Rooftop Republic CTG</h2>
+      <p style="font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.8; margin-bottom:16px;">Rooftop Republic CTG is a boutique hotel perched above the walled city of Cartagena de Indias, Colombia. Four distinct stays — from the full-rooftop experience to intimate suites — all under one address.</p>
+      <p style="font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.8; margin-bottom:32px;">Built for free spirits, night owls, and anyone who believes Cartagena deserves more than a chain hotel. Come as you are. Stay as long as you like.</p>
+      <a href="#v1-rooms" class="btn-book" style="display:inline-flex; padding:14px 32px;">Explore Rooms →</a>
+    </div>
+    <img src="/assets/flagphoto.png" alt="Rooftop Republic CTG" style="width:100%; height:420px; object-fit:cover; display:block;" />
+  </div>
+</section>
+
+<section id="v1-contact" style="padding:72px 48px; border-top:1px solid #1E1E1E;">
+  <div style="max-width:680px;">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-title" style="margin-bottom:8px;">Book Direct &amp; Save</h2>
+    <p style="font-size:.88rem; color:rgba(255,255,255,.5); margin-bottom:36px;">Contact us for availability, group rates, or custom packages.</p>
+    <form onsubmit="return false;" style="display:flex; flex-direction:column; gap:16px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#777; margin-bottom:8px;">First Name</div>
+          <input type="text" placeholder="Ana" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #1E1E1E; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#777; margin-bottom:8px;">Last Name</div>
+          <input type="text" placeholder="García" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #1E1E1E; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#777; margin-bottom:8px;">Email</div>
+        <input type="email" placeholder="ana@example.com" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #1E1E1E; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#777; margin-bottom:8px;">Check-In</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #1E1E1E; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; color-scheme:dark;" />
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#777; margin-bottom:8px;">Check-Out</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.05); border:1px solid #1E1E1E; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; color-scheme:dark;" />
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#777; margin-bottom:8px;">Message / Special Requests</div>
+        <textarea rows="4" placeholder="Group bookings, special occasions, dietary needs..." style="width:100%; background:rgba(255,255,255,.05); border:1px solid #1E1E1E; color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; resize:vertical;"></textarea>
+      </div>
+      <div style="font-size:.76rem; color:#3a3a3a; line-height:1.6;">Cancellation policy: 25% partial refund within 14 days of your original purchase date. Refunds are processed through Stripe within 5–10 business days.</div>
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+        <button type="submit" class="btn-book" style="padding:15px 36px;">Send Inquiry →</button>
+        <a href="mailto:wilfred.leeux9@gmail.com" style="font-family:'Barlow Condensed',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#777; text-decoration:none;">wilfred.leeux9@gmail.com</a>
+      </div>
+    </form>
+  </div>
+</section>
+
 <footer>
-  <span class="footer-copy">© 2025 Rooftop Republic CTG · Cartagena de Indias, Colombia</span>
-  <span class="footer-note">Mockup Preview — Not for Distribution</span>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-main">Rooftop Republic</div>
+      <div class="footer-brand-sub">Hotel Cartagena</div>
+      <p class="footer-addr">Bocagrande, Cartagena<br>de Indias, Colombia</p>
+      <a href="#v1-about" class="footer-map">View on Map →</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay</div>
+      <ul class="footer-links"><li><a href="#v1-rooms">Rooms</a></li><li><a href="#v1-rooms">Suites</a></li><li><a href="#v1-rooms">Long Stay</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Experiences</div>
+      <ul class="footer-links"><li><a href="#v1-experiences">Events</a></li><li><a href="#v1-experiences">Wellness</a></li><li><a href="#v1-experiences">Local Guide</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Eat &amp; Drink</div>
+      <ul class="footer-links"><li><a href="#v1-eat-drink">Vibe Lounge</a></li><li><a href="#v1-eat-drink">Cocktails</a></li><li><a href="#v1-eat-drink">Rooftop</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Follow the Vibe</div>
+      <div class="footer-social-row">
+        <a href="#" class="social-chip">IG</a>
+        <a href="#" class="social-chip">TT</a>
+        <a href="#" class="social-chip">SP</a>
+        <a href="#" class="social-chip">WA</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Rooftop Republic CTG · Cartagena de Indias, Colombia. All rights reserved.</span>
+  </div>
 </footer>
 
+</div><!-- /mockup-v1 -->
+
+<!-- ══════════════════════════════════════
+     VERSION 2 — EDITORIAL B&W
+══════════════════════════════════════ -->
+<div class="v-sep" id="v2">
+  <span class="v-sep-label">Version 2 · Editorial B&amp;W</span>
+  <a href="#" class="v-sep-back">↑ Back to Top</a>
+</div>
+
+<div class="mockup-v2">
+
+<nav>
+  <a href="#v2" class="nav-brand">
+    <span class="nav-brand-main">Rooftop Republic</span>
+    <span class="nav-brand-sub">Hotel Cartagena</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#v2-rooms">Stay</a></li>
+    <li><a href="#v2-vibe">Experiences</a></li>
+    <li><a href="#v2-vibe">Eat &amp; Drink</a></li>
+    <li><a href="#v2-about">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#v2-contact" class="nav-book">Book Now</a>
+  </div>
+</nav>
+
+<section id="v2-hero">
+  <div class="hl">
+    <div class="hl-spacer"></div>
+    <h1 class="hl-head">Cartagena<br>Hits<br>Different.</h1>
+    <div class="hl-foot">
+      <p class="hl-sub">Good Stays. Good People.<br>Unforgettable Energy.</p>
+      <div class="hl-fields">
+        <div class="hf"><div class="hf-lbl">Check-In</div><div class="hf-val" id="v2-cin">APR 22</div></div>
+        <div class="hf"><div class="hf-lbl">Check-Out</div><div class="hf-val" id="v2-cout">APR 25</div></div>
+        <div class="hf"><div class="hf-lbl">Guests</div><div class="hf-val">2</div></div>
+      </div>
+      <a href="#v2-rooms" class="hl-avail">Check Availability &nbsp;→</a>
+    </div>
+  </div>
+  <div class="hr">
+    <img src="/assets/rooftopgtg.png" alt="Rooftop Republic CTG" />
+    <div class="hr-dim"></div>
+    <div class="hr-vert">Cartagena, Colombia</div>
+    <div class="hr-widget">
+      <div class="hw-t" id="v2-hw-time">11:34 PM</div>
+      <div class="hw-dots"><div class="hw-d on"></div><div class="hw-d"></div><div class="hw-d"></div></div>
+      <div class="hw-temp">26°C</div>
+    </div>
+  </div>
+</section>
+
+<section id="v2-vibe">
+  <img src="/assets/flagphoto.png" alt="Vibe Lounge" />
+  <div class="vibe-bg"></div>
+  <div class="vibe-inner">
+    <div>
+      <h2 class="vibe-head">Vibe<br>Lounge.<br>Cartagena.</h2>
+      <p class="vibe-sub">Open-Air Terrace.<br>Tropical Cocktails.</p>
+      <a href="#v2-contact" class="vibe-link">View the Menu</a>
+    </div>
+    <div class="vibe-rc">
+      <div class="play-btn" aria-label="Play video"></div>
+      <div class="vibe-hours">7AM–11PM</div>
+    </div>
+  </div>
+</section>
+
+<div class="rooms-bar">
+  <h2 class="rooms-bar-title">Spaces That Move With You.<br>Choose Your Stay.</h2>
+  <a href="#v2-contact" class="rooms-bar-link">View All Rooms →</a>
+</div>
+
+<section id="v2-rooms">
+  <div class="rr">
+    <div class="ra"><div class="ra-num">01</div><div><div class="ra-name">The Rooftop</div><div class="ra-spec">8 Guests · Private Pool</div><a href="#v2-contact" class="ra-price">From $450 / Night →</a></div></div>
+    <div class="rb"><img src="/assets/rooftopgtg.png" alt="The Rooftop" /></div>
+    <div class="rc"><div class="rc-icon">✦</div><div class="rc-name">Rooftop Pool &amp; Sunsets</div><p class="rc-desc">Views that stay with you. Private pool access from sunrise to sunset.</p></div>
+  </div>
+  <div class="rr">
+    <div class="ra"><div class="ra-num">02</div><div><div class="ra-name">The Penthouse</div><div class="ra-spec">4 Guests · City View</div><a href="#v2-contact" class="ra-price">From $380 / Night →</a></div></div>
+    <div class="rb"><img src="/assets/flagphoto.png" alt="The Penthouse" /></div>
+    <div class="rc"><div class="rc-icon">♪</div><div class="rc-name">Live Music &amp; DJ Sets</div><p class="rc-desc">From locals to legends. Nightly music from the rooftop terrace.</p></div>
+  </div>
+  <div class="rr">
+    <div class="ra"><div class="ra-num">03</div><div><div class="ra-name">CTG Apartment</div><div class="ra-spec">4 Guests · City Living</div><a href="#v2-contact" class="ra-price">From $220 / Night →</a></div></div>
+    <div class="rb"><img src="/assets/mainbedroom.png" alt="CTG Apartment" /></div>
+    <div class="rc"><div class="rc-icon">🍹</div><div class="rc-name">Local Bites &amp; Drinks</div><p class="rc-desc">Good food. Better people. Caribbean flavors and tropical cocktails on tap.</p></div>
+  </div>
+  <div class="rr">
+    <div class="ra"><div class="ra-num">04</div><div><div class="ra-name">The Suite</div><div class="ra-spec">2 Guests · Boutique</div><a href="#v2-contact" class="ra-price">From $150 / Night →</a></div></div>
+    <div class="rb"><img src="/assets/mainbedroom.png" alt="The Suite" style="object-position:right 30%;" /></div>
+    <div class="rc"><div class="rc-icon">⌘</div><div class="rc-name">City Tours &amp; Adventures</div><p class="rc-desc">Explore more. Feel more. Guided walks through Cartagena's hidden streets.</p></div>
+  </div>
+</section>
+
+<section id="v2-about" style="padding:72px 56px; background:#0d0d0d; border-top:1px solid #1A1A1A;">
+  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;">
+    <div>
+      <p style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:12px;">Our Story</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; text-transform:uppercase; margin-bottom:20px; line-height:1;">About Rooftop Republic CTG</h2>
+      <p style="font-size:.88rem; color:rgba(255,255,255,.48); line-height:1.85; margin-bottom:16px;">A boutique hotel above the walled city of Cartagena de Indias. Four distinct stays — from the rooftop to intimate suites — all under one address.</p>
+      <p style="font-size:.88rem; color:rgba(255,255,255,.48); line-height:1.85; margin-bottom:36px;">Built for free spirits and anyone who believes Cartagena deserves more than a chain hotel. Come as you are. Stay as long as you like.</p>
+      <a href="#v2-rooms" style="font-family:'Barlow Condensed',sans-serif; font-size:.76rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.28); padding-bottom:2px;">Choose Your Stay →</a>
+    </div>
+    <img src="/assets/mainbedroom.png" alt="Rooftop Republic CTG suite" style="width:100%; height:400px; object-fit:cover; display:block;" />
+  </div>
+</section>
+
+<section id="v2-contact" style="padding:72px 56px; border-top:1px solid #1A1A1A;">
+  <div style="max-width:660px;">
+    <p style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:12px;">Get In Touch</p>
+    <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; text-transform:uppercase; margin-bottom:8px; line-height:1;">Book Direct &amp; Save</h2>
+    <p style="font-size:.86rem; color:rgba(255,255,255,.38); margin-bottom:36px;">Contact us for availability, group rates, or custom packages.</p>
+    <form onsubmit="return false;" style="display:flex; flex-direction:column; gap:16px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:8px;">First Name</div>
+          <input type="text" placeholder="Ana" style="width:100%; background:rgba(255,255,255,.04); border:1px solid #1A1A1A; color:#fff; font-family:'Barlow',sans-serif; font-size:.88rem; padding:11px 14px; outline:none;" />
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:8px;">Last Name</div>
+          <input type="text" placeholder="García" style="width:100%; background:rgba(255,255,255,.04); border:1px solid #1A1A1A; color:#fff; font-family:'Barlow',sans-serif; font-size:.88rem; padding:11px 14px; outline:none;" />
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:8px;">Email</div>
+        <input type="email" placeholder="ana@example.com" style="width:100%; background:rgba(255,255,255,.04); border:1px solid #1A1A1A; color:#fff; font-family:'Barlow',sans-serif; font-size:.88rem; padding:11px 14px; outline:none;" />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:8px;">Check-In</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.04); border:1px solid #1A1A1A; color:#fff; font-family:'Barlow',sans-serif; font-size:.88rem; padding:11px 14px; outline:none; color-scheme:dark;" />
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:8px;">Check-Out</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.04); border:1px solid #1A1A1A; color:#fff; font-family:'Barlow',sans-serif; font-size:.88rem; padding:11px 14px; outline:none; color-scheme:dark;" />
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:#646464; margin-bottom:8px;">Message</div>
+        <textarea rows="4" placeholder="Special requests, group bookings, events..." style="width:100%; background:rgba(255,255,255,.04); border:1px solid #1A1A1A; color:#fff; font-family:'Barlow',sans-serif; font-size:.88rem; padding:11px 14px; outline:none; resize:vertical;"></textarea>
+      </div>
+      <div style="font-size:.72rem; color:#2a2a2a; line-height:1.65;">Cancellation policy: 25% partial refund within 14 days of your original purchase date. Refunds are processed through Stripe within 5–10 business days.</div>
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+        <button type="submit" style="font-family:'Barlow Condensed',sans-serif; font-size:.76rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#080808; background:#fff; border:none; padding:14px 32px; cursor:pointer;">Send Inquiry →</button>
+        <a href="mailto:wilfred.leeux9@gmail.com" style="font-family:'Barlow Condensed',sans-serif; font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#646464; text-decoration:none;">wilfred.leeux9@gmail.com</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div id="v2-cta">
+  <div class="cta-left">
+    <div class="cta-title">Ready When You Are.</div>
+    <div class="cta-sub">Book Direct. Best Rates. No Fees.</div>
+  </div>
+  <form class="cta-form" onsubmit="return false;">
+    <input type="email" placeholder="Your Email" />
+    <button type="submit">→</button>
+  </form>
+  <a href="#v2-rooms" class="cta-book">Book Now →</a>
+</div>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fb-m">Rooftop Republic</div>
+      <div class="fb-s">Hotel Cartagena</div>
+      <p class="fb-a">Bocagrande, Cartagena<br>de Indias, Colombia</p>
+      <div class="fb-soc"><a href="#">IG</a><a href="#">TT</a><a href="#">SP</a><a href="#">WA</a></div>
+    </div>
+    <div><div class="fc-t">Stay</div><ul class="fc-l"><li><a href="#v2-rooms">Rooms</a></li><li><a href="#v2-rooms">Suites</a></li><li><a href="#v2-rooms">Long Stay</a></li></ul></div>
+    <div><div class="fc-t">Experiences</div><ul class="fc-l"><li><a href="#v2-vibe">Events</a></li><li><a href="#v2-vibe">Wellness</a></li><li><a href="#v2-vibe">Local Guide</a></li></ul></div>
+    <div><div class="fc-t">Eat &amp; Drink</div><ul class="fc-l"><li><a href="#v2-vibe">Vibe Lounge</a></li><li><a href="#v2-vibe">Cocktails</a></li><li><a href="#v2-vibe">Rooftop</a></li></ul></div>
+    <div><div class="fc-t">About</div><ul class="fc-l"><li><a href="#v2-about">Our Story</a></li><li><a href="#v2-about">Sustainability</a></li><li><a href="#v2-contact">Careers</a></li></ul></div>
+    <div class="fb-badge"><span>Made for Free Spirits</span></div>
+  </div>
+  <div class="fbot">
+    <span class="fbot-c">© 2025 Rooftop Republic CTG · Cartagena de Indias</span>
+    <div class="fbot-l"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+
+</div><!-- /mockup-v2 -->
+
+<script>
+  // Shared date formatter
+  const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+  const base = new Date(); base.setDate(base.getDate() + 7);
+  const out  = new Date(base); out.setDate(out.getDate() + 3);
+
+  // V1 dates
+  const v1cin = document.getElementById('v1-cin');
+  const v1cout = document.getElementById('v1-cout');
+  if (v1cin) v1cin.textContent = fmt(base);
+  if (v1cout) v1cout.textContent = fmt(out);
+
+  // V2 dates
+  const v2cin = document.getElementById('v2-cin');
+  const v2cout = document.getElementById('v2-cout');
+  if (v2cin) v2cin.textContent = fmt(base);
+  if (v2cout) v2cout.textContent = fmt(out);
+
+  // V2 live clock (Cartagena = America/Bogota)
+  function tickV2() {
+    const el = document.getElementById('v2-hw-time');
+    if (el) el.textContent = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota', hour: 'numeric', minute: '2-digit', hour12: true });
+  }
+  tickV2();
+  setInterval(tickV2, 30000);
+</script>
 </body>
 </html>
