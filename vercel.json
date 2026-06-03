@@ -1,7 +1,9 @@
 {
   "rewrites": [
-    { "source": "/hotel", "destination": "/hotel.html" },
+    { "source": "/hotel",  "destination": "/hotel.html"  },
     { "source": "/hotel2", "destination": "/hotel2.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/store",  "destination": "/index.html"  },
+    { "source": "/",       "destination": "/home.html"   },
+    { "source": "/(.*)",   "destination": "/index.html"  }
   ]
 }

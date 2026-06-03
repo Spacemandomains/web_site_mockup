@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooftop Republic CTG Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:  #C9FF00;
+      --cream: #EDE9E1;
+      --black: #080808;
+      --dark:  #111;
+      --border:#1C1C1C;
+      --muted: #555;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .logo-main {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .logo-sub {
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .header-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+    }
+
+    /* ── HERO BAR ── */
+    .hero-bar {
+      padding: 80px 48px 64px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .hero-bar-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+      line-height: .9;
+    }
+    .hero-bar-title span { color: var(--lime); }
+    .hero-bar-desc {
+      max-width: 360px;
+      font-size: .88rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.7;
+      flex-shrink: 0;
+    }
+
+    /* ── MOCKUP GRID ── */
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      padding: 3px;
+    }
+
+    .mockup-card {
+      position: relative;
+      background: var(--dark);
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    /* Preview: stacked mini-screenshots of the mockup */
+    .mockup-preview {
+      position: relative;
+      height: 480px;
+      overflow: hidden;
+    }
+    .mockup-preview img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .65s ease;
+    }
+    .mockup-card:hover .mockup-preview img { transform: scale(1.04); }
+
+    /* Overlay layer: shows the "screen" effect */
+    .mockup-screen-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+    }
+
+    /* Version badge */
+    .version-badge {
+      position: absolute;
+      top: 20px; left: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      color: var(--black);
+    }
+    .badge-v1 { background: var(--cream); color: var(--black); }
+    .badge-v2 { background: var(--lime); color: var(--black); }
+
+    /* Mockup info panel */
+    .mockup-info {
+      padding: 24px 28px 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .mockup-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      margin-bottom: 6px;
+    }
+    .mockup-style {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .mockup-arrow {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--white);
+      transition: background .15s, border-color .15s;
+      margin-top: 4px;
+    }
+    .mockup-card:hover .mockup-arrow {
+      background: var(--white);
+      border-color: var(--white);
+      color: var(--black);
+    }
+
+    /* Style tags row */
+    .style-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .style-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 36px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy {
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+    .footer-note {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #333;
+    }
+
+    @media (max-width: 800px) {
+      header { padding: 20px 24px; }
+      .hero-bar { padding: 48px 24px 40px; flex-direction: column; align-items: flex-start; }
+      .mockup-grid { grid-template-columns: 1fr; }
+      .mockup-preview { height: 320px; }
+      footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="logo">
+    <span class="logo-main">Rooftop Republic CTG</span>
+    <span class="logo-sub">Website Mockups</span>
+  </div>
+  <div class="header-tag">2 Designs Available</div>
+</header>
+
+<!-- ── HERO BAR ── -->
+<div class="hero-bar">
+  <h1 class="hero-bar-title">
+    Choose Your<br>
+    <span>Mockup.</span>
+  </h1>
+  <p class="hero-bar-desc">
+    Two fully built hotel website mockups for Rooftop Republic CTG. Each uses the same photos and branding in a completely different design direction. Preview both and pick your favorite.
+  </p>
+</div>
+
+<!-- ── MOCKUP CARDS ── -->
+<div class="mockup-grid">
+
+  <!-- Version 1: Editorial B&W -->
+  <a href="/hotel2" class="mockup-card">
+    <div class="mockup-preview">
+      <img src="/assets/rooftopgtg.png" alt="Version 1 — Editorial" />
+      <div class="mockup-screen-overlay"></div>
+
+      <!-- Mini nav overlay to hint at the design -->
+      <div style="position:absolute; top:0; left:0; right:0; height:48px; background:rgba(8,8,8,.92); display:flex; align-items:center; padding:0 20px; gap:16px; border-bottom:1px solid rgba(255,255,255,.07);">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; margin-right:auto;">Rooftop Republic</div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#555;">Stay</div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#555;">Experiences</div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#555;">Eat &amp; Drink</div>
+        <div style="background:var(--white); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; padding:5px 12px; margin-left:8px;">Book Now</div>
+      </div>
+
+      <!-- Hero text hint -->
+      <div style="position:absolute; bottom:80px; left:32px;">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; line-height:.9; letter-spacing:-.01em; text-transform:uppercase; color:#fff; text-shadow:0 2px 20px rgba(0,0,0,.6);">
+          Cartagena<br>Hits<br>Different.
+        </div>
+      </div>
+
+      <!-- Split cream hint at bottom -->
+      <div style="position:absolute; bottom:0; left:0; right:0; height:72px; background:var(--cream); display:flex; align-items:center; padding:0 24px; gap:24px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.52rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#999; margin-bottom:3px;">Check-In</div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:900; color:#111; letter-spacing:.03em; text-transform:uppercase;">APR 22</div>
+        </div>
+        <div style="width:1px; height:30px; background:rgba(0,0,0,.1);"></div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.52rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#999; margin-bottom:3px;">Check-Out</div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:900; color:#111; letter-spacing:.03em; text-transform:uppercase;">APR 25</div>
+        </div>
+        <div style="margin-left:auto; font-family:'Barlow Condensed',sans-serif; font-size:.7rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#111; border-bottom:2px solid #111; padding-bottom:1px;">Check Availability →</div>
+      </div>
+    </div>
+    <div class="mockup-info">
+      <div>
+        <div class="mockup-name">Version 1</div>
+        <div class="mockup-style">Editorial · Black &amp; White · Split Screen</div>
+        <div class="style-tags">
+          <span class="style-tag">Minimal</span>
+          <span class="style-tag">Editorial</span>
+          <span class="style-tag">Numbered Rooms</span>
+          <span class="style-tag">Split Hero</span>
+        </div>
+      </div>
+      <div class="mockup-arrow">→</div>
+    </div>
+    <div class="version-badge badge-v1">Version 1</div>
+  </a>
+
+  <!-- Version 2: Dark / Neon -->
+  <a href="/hotel" class="mockup-card">
+    <div class="mockup-preview">
+      <img src="/assets/mainbedroom.png" alt="Version 2 — Dark Neon" />
+      <div class="mockup-screen-overlay"></div>
+
+      <!-- Mini nav overlay -->
+      <div style="position:absolute; top:0; left:0; right:0; height:48px; background:rgba(10,10,10,.95); display:flex; align-items:center; padding:0 20px; gap:16px; border-bottom:1px solid rgba(255,255,255,.07);">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; margin-right:auto;">Rooftop Republic</div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime);">Stay</div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#555;">Experiences</div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#555;">Eat &amp; Drink</div>
+        <div style="background:var(--lime); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:.58rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; padding:5px 12px; margin-left:8px;">Book Now</div>
+      </div>
+
+      <!-- Hero text hint -->
+      <div style="position:absolute; bottom:88px; left:32px;">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; line-height:.9; letter-spacing:-.01em; text-transform:uppercase; color:#fff; text-shadow:0 2px 20px rgba(0,0,0,.7);">
+          Spaces<br>That Move<br><span style="color:#FF1F8E; font-style:italic;">With You.</span>
+        </div>
+      </div>
+
+      <!-- Search bar hint at bottom -->
+      <div style="position:absolute; bottom:0; left:0; right:0; height:76px; background:rgba(10,10,10,.95); display:flex; align-items:center; padding:0 24px; gap:0; border-top:1px solid rgba(255,255,255,.06);">
+        <div style="flex:1; padding:0 20px 0 0; border-right:1px solid rgba(255,255,255,.08);">
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.5rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#555; margin-bottom:3px;">Check-In</div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:900; color:#fff; letter-spacing:.04em; text-transform:uppercase;">APR 22</div>
+        </div>
+        <div style="flex:1; padding:0 20px; border-right:1px solid rgba(255,255,255,.08);">
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.5rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#555; margin-bottom:3px;">Check-Out</div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:900; color:#fff; letter-spacing:.04em; text-transform:uppercase;">APR 25</div>
+        </div>
+        <div style="flex:1; padding:0 20px; border-right:1px solid rgba(255,255,255,.08);">
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.5rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#555; margin-bottom:3px;">Guests</div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:900; color:#fff; letter-spacing:.04em; text-transform:uppercase;">2 Guests</div>
+        </div>
+        <div style="background:var(--lime); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; padding:0 24px; height:76px; display:flex; align-items:center; white-space:nowrap;">Update Search</div>
+      </div>
+    </div>
+    <div class="mockup-info">
+      <div>
+        <div class="mockup-name">Version 2</div>
+        <div class="mockup-style">Dark · Neon Green · Card Grid</div>
+        <div class="style-tags">
+          <span class="style-tag">Bold</span>
+          <span class="style-tag">High Energy</span>
+          <span class="style-tag">Room Cards</span>
+          <span class="style-tag">Lime Green</span>
+        </div>
+      </div>
+      <div class="mockup-arrow">→</div>
+    </div>
+    <div class="version-badge badge-v2">Version 2</div>
+  </a>
+
+</div>
+
+<!-- ── FOOTER ── */
+<footer>
+  <span class="footer-copy">© 2025 Rooftop Republic CTG · Cartagena de Indias, Colombia</span>
+  <span class="footer-note">Mockup Preview — Not for Distribution</span>
+</footer>
+
+</body>
+</html>
