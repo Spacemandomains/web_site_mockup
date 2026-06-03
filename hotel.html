@@ -11,13 +11,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --lime: #CAFF00;
-      --pink: #FF1F8E;
-      --black: #0A0A0A;
-      --card-bg: #111111;
-      --border: #222;
-      --white: #FFFFFF;
-      --muted: #888;
+      --lime:   #C9FF00;
+      --pink:   #FF1F8E;
+      --black:  #0A0A0A;
+      --card:   #111111;
+      --border: #1E1E1E;
+      --muted:  #777777;
+      --white:  #FFFFFF;
     }
 
     html { scroll-behavior: smooth; }
@@ -25,81 +25,77 @@
       font-family: 'Barlow', sans-serif;
       background: var(--black);
       color: var(--white);
-      line-height: 1.5;
     }
 
-    /* ── NAV ── */
+    /* ─── NAV ─── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
+      inset: 0 0 auto 0;
+      z-index: 300;
+      height: 60px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 0;
-      padding: 0 32px;
-      height: 64px;
-      background: rgba(10,10,10,.96);
+      padding: 0 28px;
+      background: rgba(10,10,10,.97);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-brand {
       text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-right: auto;
-      line-height: 1.1;
+      line-height: 1.15;
     }
     .nav-brand-main {
+      display: block;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
-      letter-spacing: .06em;
+      letter-spacing: .07em;
       text-transform: uppercase;
       color: var(--white);
     }
     .nav-brand-sub {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 400;
+      display: block;
+      font-size: .6rem;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    .nav-links {
+    .nav-center {
       display: flex;
       gap: 0;
       list-style: none;
-      height: 100%;
     }
-    .nav-links li { height: 100%; }
-    .nav-links a {
+    .nav-center a {
       display: flex;
       align-items: center;
-      height: 100%;
+      height: 60px;
       padding: 0 20px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .12em;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--white);
       text-decoration: none;
+      color: rgba(255,255,255,.65);
       transition: color .15s;
     }
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--lime); }
+    .nav-center a:hover { color: var(--white); }
+    .nav-center a.active { color: var(--lime); }
 
+    .nav-right {
+      display: flex;
+      justify-content: flex-end;
+    }
     .nav-book {
       display: flex;
       align-items: center;
-      height: 100%;
-      padding: 0 24px;
-      margin-left: 24px;
+      height: 60px;
+      padding: 0 26px;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .8rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--black);
@@ -109,11 +105,11 @@
     }
     .nav-book:hover { opacity: .85; }
 
-    /* ── HERO ── */
+    /* ─── HERO ─── */
     #hero {
       position: relative;
       height: 100vh;
-      min-height: 600px;
+      min-height: 620px;
       overflow: hidden;
     }
     .hero-bg {
@@ -121,99 +117,99 @@
       inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 40%;
+      object-position: center 35%;
     }
-    .hero-overlay {
+    /* Dark vignette — heavier left & bottom for text legibility */
+    .hero-vignette {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(0,0,0,.75) 0%,
-        rgba(0,0,0,.35) 50%,
-        rgba(0,0,0,.1) 100%
-      );
+      background:
+        linear-gradient(to right,  rgba(0,0,0,.72) 0%, rgba(0,0,0,.1) 55%, transparent 100%),
+        linear-gradient(to top,    rgba(0,0,0,.85) 0%, rgba(0,0,0,.1) 45%, transparent 100%),
+        linear-gradient(to bottom, rgba(0,0,0,.45) 0%, transparent 30%);
     }
-    .hero-overlay-bottom {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 200px;
-      background: linear-gradient(to top, var(--black) 0%, transparent 100%);
-    }
-    .hero-content {
+
+    .hero-body {
       position: relative;
       z-index: 2;
-      height: 100%;
+      height: calc(100% - 132px); /* leave room for search bar */
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 48px 80px;
-      max-width: 700px;
+      padding: 0 48px 48px;
     }
+
     .hero-headline {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-size: clamp(4.5rem, 10vw, 8.5rem);
       font-weight: 900;
-      line-height: .95;
+      line-height: .9;
       letter-spacing: -.01em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .hero-headline .accent { color: var(--pink); }
+    .hero-headline .accent { color: var(--pink); font-style: italic; }
+
     .hero-sub {
-      font-size: 1rem;
+      font-size: .95rem;
       font-weight: 400;
-      color: rgba(255,255,255,.8);
+      color: rgba(255,255,255,.78);
       max-width: 380px;
-      margin-bottom: 0;
       line-height: 1.5;
     }
 
-    /* ── SEARCH BAR ── */
+    /* ─── SEARCH BAR ─── */
     .search-bar {
-      position: relative;
-      z-index: 10;
-      background: var(--card-bg);
-      border-top: 1px solid var(--border);
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3;
+      height: 80px;
       display: flex;
       align-items: stretch;
-      height: 72px;
+      background: rgba(10,10,10,.92);
+      border-top: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(6px);
     }
-    .search-field {
+
+    .sf { /* search field */
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 0 32px;
-      border-right: 1px solid var(--border);
+      border-right: 1px solid rgba(255,255,255,.08);
       cursor: pointer;
+      transition: background .15s;
     }
-    .search-field:hover { background: rgba(255,255,255,.03); }
-    .search-label {
+    .sf:hover { background: rgba(255,255,255,.04); }
+
+    .sf-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .6rem;
-      font-weight: 600;
-      letter-spacing: .2em;
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 4px;
     }
-    .search-value {
+    .sf-val {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
       letter-spacing: .04em;
       text-transform: uppercase;
       color: var(--white);
     }
-    .search-btn {
+
+    .search-update-btn {
       display: flex;
       align-items: center;
-      padding: 0 40px;
+      padding: 0 36px;
       background: var(--lime);
       border: none;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .85rem;
-      font-weight: 700;
+      font-size: .82rem;
+      font-weight: 800;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--black);
@@ -221,79 +217,93 @@
       white-space: nowrap;
       transition: opacity .15s;
     }
-    .search-btn:hover { opacity: .85; }
+    .search-update-btn:hover { opacity: .85; }
+
     .search-avail {
       display: flex;
       align-items: center;
-      padding: 0 32px;
+      padding: 0 28px;
       font-size: .8rem;
+      font-weight: 500;
       color: var(--muted);
       white-space: nowrap;
-      border-left: 1px solid var(--border);
+      border-left: 1px solid rgba(255,255,255,.07);
     }
 
-    /* ── ROOMS SECTION ── */
-    #rooms { padding: 64px 48px; }
-    .rooms-section-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 600;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--lime);
-      margin-bottom: 12px;
+    /* ─── ROOMS ─── */
+    #rooms {
+      padding: 72px 48px;
     }
-    .rooms-section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-      margin-bottom: 48px;
-    }
-    .rooms-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3px;
-    }
-    .room-card {
-      position: relative;
-      background: var(--card-bg);
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .room-card-img-wrap {
-      position: relative;
-      overflow: hidden;
-      height: 320px;
-    }
-    .room-card-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform .6s ease;
-    }
-    .room-card:hover .room-card-img-wrap img { transform: scale(1.05); }
-    .room-badge {
-      position: absolute;
-      top: 16px; left: 16px;
-      z-index: 2;
+    .rooms-eyebrow {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .65rem;
       font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 10px;
+    }
+    .rooms-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .01em;
+      margin-bottom: 48px;
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .room-card {
+      background: var(--card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .room-card-photo {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .room-card-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .65s ease;
+    }
+    .room-card:hover .room-card-photo img { transform: scale(1.06); }
+
+    .room-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .62rem;
+      font-weight: 800;
       letter-spacing: .14em;
       text-transform: uppercase;
-      padding: 5px 10px;
+      padding: 5px 11px;
       color: var(--black);
     }
-    .badge-green { background: var(--lime); }
-    .badge-blue { background: #00D4FF; }
-    .badge-orange { background: #FF6B00; color: #fff; }
+    .badge-lime   { background: var(--lime); }
+    .badge-cyan   { background: #00D9FF; }
+    .badge-orange { background: #FF6A00; color: #fff; }
 
     .room-card-body {
-      padding: 20px 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 22px 24px 24px;
       border-top: 3px solid var(--border);
     }
-    .room-card-header {
+
+    .room-card-row1 {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
@@ -301,61 +311,69 @@
     }
     .room-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
+      font-size: 1.65rem;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .02em;
     }
-    .room-price {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--lime);
+    .room-price-block {
       text-align: right;
       line-height: 1;
     }
-    .room-price span {
+    .room-price-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--lime);
+    }
+    .room-price-unit {
       display: block;
-      font-size: .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .6rem;
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--muted);
+      margin-top: 2px;
     }
+
     .room-desc {
-      font-size: .875rem;
-      color: rgba(255,255,255,.65);
-      line-height: 1.5;
-      margin-bottom: 16px;
+      font-size: .85rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      flex: 1;
     }
+
     .room-specs {
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .8rem;
+      font-size: .78rem;
       font-weight: 600;
       letter-spacing: .06em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 20px;
     }
-    .room-specs span { display: flex; align-items: center; gap: 5px; }
-    .room-actions {
+
+    .room-btns {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 3px;
+      gap: 4px;
     }
     .btn-book {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 20px;
+      padding: 15px 12px;
       background: var(--lime);
       color: var(--black);
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .14em;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .12em;
       text-transform: uppercase;
       text-decoration: none;
       border: none;
@@ -367,33 +385,47 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 20px;
+      padding: 15px 22px;
       background: transparent;
       color: var(--white);
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .8rem;
+      font-size: .82rem;
       font-weight: 700;
-      letter-spacing: .14em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
       border: 1px solid var(--border);
       cursor: pointer;
-      transition: border-color .15s, color .15s;
+      transition: border-color .15s;
     }
-    .btn-details:hover { border-color: var(--white); }
+    .btn-details:hover { border-color: rgba(255,255,255,.4); }
 
-    /* ── EXPERIENCES ── */
-    #experiences { background: #111; padding: 64px 48px; }
-    .exp-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+    /* ─── EXPERIENCES ─── */
+    #experiences {
+      background: #0f0f0f;
+      padding: 72px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .section-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      text-transform: uppercase;
       margin-bottom: 40px;
     }
     .exp-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 3px;
+      gap: 4px;
     }
     .exp-card {
       position: relative;
@@ -401,72 +433,75 @@
       cursor: pointer;
     }
     .exp-card img {
-      width: 100%; height: 260px;
+      width: 100%; height: 280px;
       object-fit: cover;
       display: block;
-      transition: transform .5s ease;
+      transition: transform .55s ease;
     }
-    .exp-card:hover img { transform: scale(1.05); }
-    .exp-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.1) 60%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 20px;
-    }
-    .exp-card-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .6rem;
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--lime);
-      margin-bottom: 6px;
-    }
-    .exp-card-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-    }
-
-    /* ── EAT & DRINK ── */
-    #eat-drink { padding: 64px 48px; }
-    .ed-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3px;
-    }
-    .ed-card {
-      position: relative;
-      overflow: hidden;
-    }
-    .ed-card img {
-      width: 100%; height: 380px;
-      object-fit: cover;
-      display: block;
-      transition: transform .5s;
-    }
-    .ed-card:hover img { transform: scale(1.04); }
-    .ed-card-overlay {
+    .exp-card:hover img { transform: scale(1.06); }
+    .exp-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 55%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      padding: 20px;
+    }
+    .exp-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 5px;
+    }
+    .exp-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    /* ─── EAT & DRINK ─── */
+    #eat-drink {
+      padding: 72px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .ed-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .ed-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .ed-card img {
+      width: 100%; height: 400px;
+      object-fit: cover;
+      display: block;
+      transition: transform .55s ease;
+    }
+    .ed-card:hover img { transform: scale(1.05); }
+    .ed-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.05) 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
       padding: 28px;
     }
-    .ed-badge {
+    .ed-tag {
       display: inline-block;
       background: var(--pink);
       color: var(--white);
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .6rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: .16em;
       text-transform: uppercase;
       padding: 4px 10px;
@@ -475,25 +510,26 @@
     }
     .ed-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
+      font-size: 2.2rem;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .02em;
       margin-bottom: 8px;
     }
     .ed-desc {
       font-size: .85rem;
-      color: rgba(255,255,255,.75);
+      color: rgba(255,255,255,.7);
       max-width: 340px;
+      line-height: 1.5;
     }
 
-    /* ── FOOTER ── */
+    /* ─── FOOTER ─── */
     footer {
       background: #080808;
       border-top: 1px solid var(--border);
-      padding: 56px 48px 32px;
+      padding: 60px 48px 28px;
     }
-    .footer-grid {
+    .footer-top {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
       gap: 48px;
@@ -503,21 +539,19 @@
     }
     .footer-brand-main {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: .06em;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: .07em;
       text-transform: uppercase;
       color: var(--white);
       line-height: 1.1;
     }
     .footer-brand-sub {
-      font-family: 'Barlow Condensed', sans-serif;
       font-size: .6rem;
-      font-weight: 400;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .footer-addr {
       font-size: .8rem;
@@ -525,7 +559,7 @@
       line-height: 1.7;
       margin-bottom: 16px;
     }
-    .footer-map-link {
+    .footer-map {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .75rem;
       font-weight: 700;
@@ -533,18 +567,23 @@
       text-transform: uppercase;
       color: var(--white);
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
     }
-    .footer-map-link:hover { color: var(--lime); }
+    .footer-map:hover { color: var(--lime); }
+
     .footer-col-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .2em;
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--white);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
     .footer-links a {
       font-size: .8rem;
       color: var(--muted);
@@ -552,38 +591,47 @@
       transition: color .15s;
     }
     .footer-links a:hover { color: var(--white); }
-    .social-row { display: flex; gap: 8px; margin-top: 4px; }
-    .social-btn {
+
+    .footer-social-row { display: flex; gap: 6px; margin-top: 2px; }
+    .social-chip {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .1em;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
       color: var(--black);
       background: var(--white);
       padding: 6px 10px;
       text-decoration: none;
       transition: background .15s;
     }
-    .social-btn:hover { background: var(--lime); }
+    .social-chip:hover { background: var(--lime); }
+
     .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .footer-copy { font-size: .72rem; color: #444; }
+    .footer-copy { font-size: .7rem; color: #3a3a3a; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hero-content { padding: 0 24px 72px; }
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { grid-template-columns: 1fr auto; }
+      .nav-center { display: none; }
+      .hero-body { padding: 0 24px 48px; }
       #rooms, #experiences, #eat-drink { padding: 48px 20px; }
-      .rooms-grid, .ed-layout { grid-template-columns: 1fr; }
+      .rooms-grid, .ed-grid { grid-template-columns: 1fr; }
       .exp-grid { grid-template-columns: 1fr 1fr; }
-      .search-bar { flex-wrap: wrap; height: auto; padding: 16px 20px; gap: 16px; }
-      .search-field { border-right: none; border-bottom: 1px solid var(--border); padding: 8px 0; }
-      footer { padding: 40px 20px 24px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .room-card-photo { height: 260px; }
+      footer { padding: 48px 20px 24px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .search-bar { flex-wrap: wrap; height: auto; }
+      .sf { flex: none; width: 33.3%; border-bottom: 1px solid rgba(255,255,255,.08); }
+    }
+    @media (max-width: 600px) {
+      .exp-grid { grid-template-columns: 1fr; }
+      .sf { width: 50%; }
+      .footer-top { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -593,23 +641,27 @@
 <nav>
   <a href="#hero" class="nav-brand">
     <span class="nav-brand-main">Rooftop Republic</span>
-    <span class="nav-brand-sub">CTG · Cartagena</span>
+    <span class="nav-brand-sub">Hotel Cartagena</span>
   </a>
-  <ul class="nav-links">
+
+  <ul class="nav-center">
     <li><a href="#rooms" class="active">Stay</a></li>
     <li><a href="#experiences">Experiences</a></li>
     <li><a href="#eat-drink">Eat &amp; Drink</a></li>
     <li><a href="#about">About</a></li>
   </ul>
-  <a href="#rooms" class="nav-book">Book Now</a>
+
+  <div class="nav-right">
+    <a href="#contact" class="nav-book">Book Now</a>
+  </div>
 </nav>
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <img src="/assets/mainbedroom.png" alt="Rooftop Republic CTG luxury suite" class="hero-bg" />
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay-bottom"></div>
-  <div class="hero-content">
+  <img src="/assets/rooftopgtg.png" alt="Rooftop Republic CTG" class="hero-bg" />
+  <div class="hero-vignette"></div>
+
+  <div class="hero-body">
     <h1 class="hero-headline">
       Spaces<br>
       That Move<br>
@@ -617,66 +669,73 @@
     </h1>
     <p class="hero-sub">Four distinct stays. One unforgettable address. Book direct for the best rate.</p>
   </div>
-</section>
 
-<!-- ── SEARCH BAR ── -->
-<div class="search-bar">
-  <div class="search-field">
-    <div class="search-label">Check-In</div>
-    <div class="search-value" id="checkin-val">APR 22</div>
+  <!-- Search bar pinned to hero bottom -->
+  <div class="search-bar">
+    <div class="sf">
+      <div class="sf-label">Check-In</div>
+      <div class="sf-val" id="cin">APR 22</div>
+    </div>
+    <div class="sf">
+      <div class="sf-label">Check-Out</div>
+      <div class="sf-val" id="cout">APR 25</div>
+    </div>
+    <div class="sf">
+      <div class="sf-label">Guests</div>
+      <div class="sf-val">2 Guests</div>
+    </div>
+    <button class="search-update-btn">Update Search</button>
+    <div class="search-avail">4 rooms available</div>
   </div>
-  <div class="search-field">
-    <div class="search-label">Check-Out</div>
-    <div class="search-value" id="checkout-val">APR 25</div>
-  </div>
-  <div class="search-field">
-    <div class="search-label">Guests</div>
-    <div class="search-value">2 Guests</div>
-  </div>
-  <button class="search-btn">Update Search</button>
-  <div class="search-avail">4 rooms available</div>
-</div>
+</section>
 
 <!-- ── ROOMS ── -->
 <section id="rooms">
-  <div class="rooms-section-label">Accommodations</div>
-  <div class="rooms-section-title">Choose Your Stay</div>
+  <div class="rooms-eyebrow">Accommodations</div>
+  <div class="rooms-title">Choose Your Stay</div>
+
   <div class="rooms-grid">
 
-    <!-- Card 1 -->
+    <!-- Card 1: The Rooftop -->
     <div class="room-card">
-      <div class="room-card-img-wrap">
-        <img src="/assets/flagphoto.png" alt="The Rooftop" />
-        <div class="room-badge badge-green">Most Popular</div>
+      <div class="room-card-photo">
+        <img src="/assets/rooftopgtg.png" alt="The Rooftop" />
+        <div class="room-badge badge-lime">Most Popular</div>
       </div>
       <div class="room-card-body">
-        <div class="room-card-header">
+        <div class="room-card-row1">
           <div class="room-name">The Rooftop</div>
-          <div class="room-price">$450<span>/Night</span></div>
+          <div class="room-price-block">
+            <span class="room-price-num">$450</span>
+            <span class="room-price-unit">/Night</span>
+          </div>
         </div>
-        <p class="room-desc">Our ultimate luxury experience with private rooftop terrace, soaring views of Cartagena, and a full team at your service.</p>
+        <p class="room-desc">Our ultimate luxury experience with private rooftop pool, soaring views of Cartagena, and a full team at your service.</p>
         <div class="room-specs">
           <span>👥 8 Guests</span>
           <span>🛁 4 Baths</span>
           <span>📐 4200 Sqft</span>
         </div>
-        <div class="room-actions">
+        <div class="room-btns">
           <a href="#contact" class="btn-book">Book This Room →</a>
           <a href="#contact" class="btn-details">Details</a>
         </div>
       </div>
     </div>
 
-    <!-- Card 2 -->
+    <!-- Card 2: The Penthouse -->
     <div class="room-card">
-      <div class="room-card-img-wrap">
-        <img src="/assets/rooftopgtg.png" alt="The Penthouse" />
-        <div class="room-badge badge-blue">Best Views</div>
+      <div class="room-card-photo">
+        <img src="/assets/flagphoto.png" alt="The Penthouse" />
+        <div class="room-badge badge-cyan">Best Views</div>
       </div>
       <div class="room-card-body">
-        <div class="room-card-header">
+        <div class="room-card-row1">
           <div class="room-name">The Penthouse</div>
-          <div class="room-price">$380<span>/Night</span></div>
+          <div class="room-price-block">
+            <span class="room-price-num">$380</span>
+            <span class="room-price-unit">/Night</span>
+          </div>
         </div>
         <p class="room-desc">Rooftop terrace with panoramic city views and unparalleled modern luxury above the walled city.</p>
         <div class="room-specs">
@@ -684,23 +743,26 @@
           <span>🛁 2 Baths</span>
           <span>📐 2100 Sqft</span>
         </div>
-        <div class="room-actions">
+        <div class="room-btns">
           <a href="#contact" class="btn-book">Book This Room →</a>
           <a href="#contact" class="btn-details">Details</a>
         </div>
       </div>
     </div>
 
-    <!-- Card 3 -->
+    <!-- Card 3: CTG Apartment -->
     <div class="room-card">
-      <div class="room-card-img-wrap">
+      <div class="room-card-photo">
         <img src="/assets/mainbedroom.png" alt="CTG Apartment" />
         <div class="room-badge badge-orange">Great Value</div>
       </div>
       <div class="room-card-body">
-        <div class="room-card-header">
+        <div class="room-card-row1">
           <div class="room-name">CTG Apartment</div>
-          <div class="room-price">$220<span>/Night</span></div>
+          <div class="room-price-block">
+            <span class="room-price-num">$220</span>
+            <span class="room-price-unit">/Night</span>
+          </div>
         </div>
         <p class="room-desc">Spacious, stylish living areas designed for extended stays in Cartagena.</p>
         <div class="room-specs">
@@ -708,30 +770,33 @@
           <span>🛁 2 Baths</span>
           <span>📐 1400 Sqft</span>
         </div>
-        <div class="room-actions">
+        <div class="room-btns">
           <a href="#contact" class="btn-book">Book This Room →</a>
           <a href="#contact" class="btn-details">Details</a>
         </div>
       </div>
     </div>
 
-    <!-- Card 4 -->
+    <!-- Card 4: The Suite -->
     <div class="room-card">
-      <div class="room-card-img-wrap">
-        <img src="/assets/mainbedroom.png" alt="The Suite" style="object-position: right center;" />
+      <div class="room-card-photo">
+        <img src="/assets/mainbedroom.png" alt="The Suite" style="object-position: right 30%;" />
       </div>
       <div class="room-card-body">
-        <div class="room-card-header">
+        <div class="room-card-row1">
           <div class="room-name">The Suite</div>
-          <div class="room-price">$150<span>/Night</span></div>
+          <div class="room-price-block">
+            <span class="room-price-num">$150</span>
+            <span class="room-price-unit">/Night</span>
+          </div>
         </div>
-        <p class="room-desc">Boutique comfort with premium bedding, tropical charm, and every amenity you need.</p>
+        <p class="room-desc">Boutique comfort with premium bedding, tropical charm, and every amenity.</p>
         <div class="room-specs">
           <span>👥 2 Guests</span>
           <span>🛁 1 Bath</span>
           <span>📐 450 Sqft</span>
         </div>
-        <div class="room-actions">
+        <div class="room-btns">
           <a href="#contact" class="btn-book">Book This Room →</a>
           <a href="#contact" class="btn-details">Details</a>
         </div>
@@ -743,33 +808,28 @@
 
 <!-- ── EXPERIENCES ── -->
 <section id="experiences">
-  <div class="exp-header">
-    <div>
-      <div class="rooms-section-label">What To Do</div>
-      <div class="rooms-section-title" style="margin-bottom:0;">Experiences</div>
-    </div>
-    <a href="#contact" class="btn-details" style="margin-bottom:4px;">View All →</a>
-  </div>
+  <div class="section-eyebrow">What To Do</div>
+  <div class="section-title">Experiences</div>
   <div class="exp-grid">
     <div class="exp-card">
       <img src="/assets/rooftopgtg.png" alt="Rooftop Events" />
-      <div class="exp-card-overlay">
-        <div class="exp-card-label">Signature</div>
-        <div class="exp-card-name">Rooftop Events</div>
+      <div class="exp-overlay">
+        <div class="exp-label">Signature</div>
+        <div class="exp-name">Rooftop Events</div>
       </div>
     </div>
     <div class="exp-card">
       <img src="/assets/mainbedroom.png" alt="Wellness" />
-      <div class="exp-card-overlay">
-        <div class="exp-card-label">Relax</div>
-        <div class="exp-card-name">Wellness</div>
+      <div class="exp-overlay">
+        <div class="exp-label">Relax</div>
+        <div class="exp-name">Wellness</div>
       </div>
     </div>
     <div class="exp-card">
       <img src="/assets/flagphoto.png" alt="Local Guide" />
-      <div class="exp-card-overlay">
-        <div class="exp-card-label">Explore</div>
-        <div class="exp-card-name">Local Guide</div>
+      <div class="exp-overlay">
+        <div class="exp-label">Explore</div>
+        <div class="exp-name">Local Guide</div>
       </div>
     </div>
   </div>
@@ -777,21 +837,21 @@
 
 <!-- ── EAT & DRINK ── -->
 <section id="eat-drink">
-  <div class="rooms-section-label">On Property</div>
-  <div class="rooms-section-title">Eat &amp; Drink</div>
-  <div class="ed-layout">
+  <div class="section-eyebrow">On Property</div>
+  <div class="section-title">Eat &amp; Drink</div>
+  <div class="ed-grid">
     <div class="ed-card">
       <img src="/assets/rooftopgtg.png" alt="Vibe Lounge" />
-      <div class="ed-card-overlay">
-        <div class="ed-badge">Rooftop Bar</div>
+      <div class="ed-overlay">
+        <div class="ed-tag">Rooftop Bar</div>
         <div class="ed-name">Vibe Lounge</div>
-        <p class="ed-desc">Signature cocktails and sunset views above the walled city. Open nightly.</p>
+        <p class="ed-desc">Signature cocktails and sunset views above the walled city. Open nightly 7AM–11PM.</p>
       </div>
     </div>
     <div class="ed-card">
-      <img src="/assets/flagphoto.png" alt="The Republic Restaurant" />
-      <div class="ed-card-overlay">
-        <div class="ed-badge">Restaurant</div>
+      <img src="/assets/flagphoto.png" alt="The Republic" />
+      <div class="ed-overlay">
+        <div class="ed-tag">Restaurant</div>
         <div class="ed-name">The Republic</div>
         <p class="ed-desc">Colombian coastal cuisine with a modern twist. Breakfast, lunch &amp; dinner daily.</p>
       </div>
@@ -800,84 +860,78 @@
 </section>
 
 <!-- ── ABOUT ── -->
-<section id="about" style="padding:64px 48px; background: #111;">
+<section id="about" style="padding:72px 48px; background:#0f0f0f; border-top:1px solid var(--border);">
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; max-width:1200px; margin:0 auto;">
     <div>
-      <div class="rooms-section-label">Our Story</div>
-      <h2 class="rooms-section-title" style="margin-bottom:20px;">About Rooftop Republic CTG</h2>
-      <p style="font-size:.9rem; color:rgba(255,255,255,.7); line-height:1.8; margin-bottom:16px;">
-        Rooftop Republic CTG is a boutique hotel in the heart of Cartagena de Indias, Colombia. We offer four distinct stays — from the full-mansion rooftop experience to intimate suites — all under one address.
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title" style="margin-bottom:20px;">About Rooftop Republic CTG</h2>
+      <p style="font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.8; margin-bottom:16px;">
+        Rooftop Republic CTG is a boutique hotel perched above the walled city of Cartagena de Indias, Colombia. Four distinct stays — from the full-rooftop experience to intimate suites — all under one address.
       </p>
-      <p style="font-size:.9rem; color:rgba(255,255,255,.7); line-height:1.8; margin-bottom:32px;">
-        Perched above the walled city with panoramic views of the Caribbean, every corner of Rooftop Republic CTG reflects what makes Cartagena unforgettable: warmth, color, and unfiltered energy.
+      <p style="font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.8; margin-bottom:32px;">
+        Built for free spirits, night owls, and anyone who believes Cartagena deserves more than a chain hotel. Come as you are. Stay as long as you like.
       </p>
       <a href="#rooms" class="btn-book" style="display:inline-flex; padding:14px 32px;">Explore Rooms →</a>
     </div>
-    <div>
-      <img src="/assets/flagphoto.png" alt="Rooftop Republic CTG" style="width:100%; height:420px; object-fit:cover; display:block;" />
-    </div>
+    <img src="/assets/flagphoto.png" alt="Rooftop Republic CTG" style="width:100%; height:420px; object-fit:cover; display:block;" />
   </div>
 </section>
 
 <!-- ── CONTACT ── -->
-<section id="contact" style="padding:64px 48px;">
-  <div style="max-width:720px;">
-    <div class="rooms-section-label">Get In Touch</div>
-    <h2 class="rooms-section-title" style="margin-bottom:8px;">Book Direct &amp; Save</h2>
-    <p style="font-size:.9rem; color:rgba(255,255,255,.6); margin-bottom:40px;">
-      Contact us for availability, group rates, or custom packages. Booking direct guarantees the best rate.
-    </p>
+<section id="contact" style="padding:72px 48px; border-top:1px solid var(--border);">
+  <div style="max-width:680px;">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-title" style="margin-bottom:8px;">Book Direct &amp; Save</h2>
+    <p style="font-size:.88rem; color:rgba(255,255,255,.5); margin-bottom:36px;">Contact us for availability, group rates, or custom packages.</p>
+
     <form onsubmit="return false;" style="display:flex; flex-direction:column; gap:16px;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
         <div>
-          <div class="search-label" style="margin-bottom:8px;">First Name</div>
-          <input type="text" placeholder="Ana" style="width:100%; background:rgba(255,255,255,.06); border:1px solid var(--border); color:var(--white); font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 16px; outline:none;" />
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">First Name</div>
+          <input type="text" placeholder="Ana" style="width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border); color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; transition:border-color .15s;" onfocus="this.style.borderColor='rgba(255,255,255,.3)'" onblur="this.style.borderColor=''" />
         </div>
         <div>
-          <div class="search-label" style="margin-bottom:8px;">Last Name</div>
-          <input type="text" placeholder="García" style="width:100%; background:rgba(255,255,255,.06); border:1px solid var(--border); color:var(--white); font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 16px; outline:none;" />
-        </div>
-      </div>
-      <div>
-        <div class="search-label" style="margin-bottom:8px;">Email</div>
-        <input type="email" placeholder="ana@example.com" style="width:100%; background:rgba(255,255,255,.06); border:1px solid var(--border); color:var(--white); font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 16px; outline:none;" />
-      </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-        <div>
-          <div class="search-label" style="margin-bottom:8px;">Check-In</div>
-          <input type="date" style="width:100%; background:rgba(255,255,255,.06); border:1px solid var(--border); color:var(--white); font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 16px; outline:none; color-scheme:dark;" />
-        </div>
-        <div>
-          <div class="search-label" style="margin-bottom:8px;">Check-Out</div>
-          <input type="date" style="width:100%; background:rgba(255,255,255,.06); border:1px solid var(--border); color:var(--white); font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 16px; outline:none; color-scheme:dark;" />
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Last Name</div>
+          <input type="text" placeholder="García" style="width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border); color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
         </div>
       </div>
       <div>
-        <div class="search-label" style="margin-bottom:8px;">Message</div>
-        <textarea rows="4" placeholder="Special requests, group inquiries, events..." style="width:100%; background:rgba(255,255,255,.06); border:1px solid var(--border); color:var(--white); font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 16px; outline:none; resize:vertical;"></textarea>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Email</div>
+        <input type="email" placeholder="ana@example.com" style="width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border); color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none;" />
       </div>
-      <div style="font-size:.78rem; color:var(--muted); line-height:1.6;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Check-In</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border); color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; color-scheme:dark;" />
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Check-Out</div>
+          <input type="date" style="width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border); color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; color-scheme:dark;" />
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Message / Special Requests</div>
+        <textarea rows="4" placeholder="Group bookings, special occasions, dietary needs..." style="width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border); color:#fff; font-family:'Barlow',sans-serif; font-size:.9rem; padding:12px 14px; outline:none; resize:vertical;"></textarea>
+      </div>
+      <div style="font-size:.76rem; color:#3a3a3a; line-height:1.6;">
         Cancellation policy: 25% partial refund within 14 days of your original purchase date. Refunds are processed through Stripe within 5–10 business days.
       </div>
-      <div>
-        <button type="submit" class="btn-book" style="padding:16px 40px;">Send Inquiry →</button>
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+        <button type="submit" class="btn-book" style="padding:15px 36px;">Send Inquiry →</button>
+        <a href="mailto:wilfred.leeux9@gmail.com" style="font-family:'Barlow Condensed',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">wilfred.leeux9@gmail.com</a>
       </div>
     </form>
-    <div style="margin-top:32px; padding-top:32px; border-top:1px solid var(--border);">
-      <div class="search-label" style="margin-bottom:8px;">Direct Contact</div>
-      <a href="mailto:wilfred.leeux9@gmail.com" style="font-size:1rem; color:var(--lime); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:.06em;">wilfred.leeux9@gmail.com</a>
-    </div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-grid">
+  <div class="footer-top">
     <div>
       <div class="footer-brand-main">Rooftop Republic</div>
-      <div class="footer-brand-sub">CTG · Cartagena</div>
+      <div class="footer-brand-sub">Hotel Cartagena</div>
       <p class="footer-addr">Bocagrande, Cartagena<br>de Indias, Colombia</p>
-      <a href="#about" class="footer-map-link">View on Map →</a>
+      <a href="#about" class="footer-map">View on Map →</a>
     </div>
     <div>
       <div class="footer-col-title">Stay</div>
@@ -904,12 +958,12 @@
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Follow The Vibe</div>
-      <div class="social-row">
-        <a href="#" class="social-btn">IG</a>
-        <a href="#" class="social-btn">TT</a>
-        <a href="#" class="social-btn">SP</a>
-        <a href="#" class="social-btn">WA</a>
+      <div class="footer-col-title">Follow the Vibe</div>
+      <div class="footer-social-row">
+        <a href="#" class="social-chip">IG</a>
+        <a href="#" class="social-chip">TT</a>
+        <a href="#" class="social-chip">SP</a>
+        <a href="#" class="social-chip">WA</a>
       </div>
     </div>
   </div>
@@ -919,23 +973,11 @@
 </footer>
 
 <script>
-  // Sticky nav scroll effect
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      nav.style.borderBottomColor = 'rgba(202,255,0,.15)';
-    } else {
-      nav.style.borderBottomColor = '#222';
-    }
-  });
-
-  // Set default dates
-  const today = new Date();
   const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
-  const cin = new Date(today); cin.setDate(cin.getDate() + 7);
-  const cout = new Date(cin); cout.setDate(cout.getDate() + 3);
-  document.getElementById('checkin-val').textContent = fmt(cin);
-  document.getElementById('checkout-val').textContent = fmt(cout);
+  const base = new Date(); base.setDate(base.getDate() + 7);
+  const out  = new Date(base); out.setDate(out.getDate() + 3);
+  document.getElementById('cin').textContent  = fmt(base);
+  document.getElementById('cout').textContent = fmt(out);
 </script>
 </body>
 </html>
